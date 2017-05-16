@@ -1,2 +1,2 @@
-# Bills
-Collect and organize bills
+# Receipts
+Collect and organize receipts
