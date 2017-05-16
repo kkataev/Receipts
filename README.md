@@ -1,2 +1,2 @@
-# bills
+# Bills
 Collect and organize bills
