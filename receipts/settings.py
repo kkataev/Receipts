@@ -143,6 +143,8 @@ class Staging(Common):
 
 
 class Production(Staging):
+
+    DEBUG = True
     """
     The in-production settings.
     """
