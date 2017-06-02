@@ -22,7 +22,7 @@ class Common(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = values.BooleanValue(False)
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['dry-savannah-83850.herokuapp.com']
 
     # Application definition
     INSTALLED_APPS = [
