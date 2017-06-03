@@ -36,6 +36,7 @@ class Common(Configuration):
         'django_extensions',
         'debug_toolbar',
         'receipts',
+        'rest_framework',
 
     ]
 
@@ -110,6 +111,13 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+    REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': [
+            'rest_framework.permissions.IsAdminUser',
+        ],
+        'PAGE_SIZE': 10
+    }
 
 class Development(Common):
     """
