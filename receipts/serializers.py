@@ -2,6 +2,7 @@ from receipts.models import Receipt, Item, Profile
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
+import django_filters
 
 class UserSerializer(serializers.ModelSerializer):  
     class Meta:

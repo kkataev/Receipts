@@ -14,6 +14,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from django.core import serializers
 
+from rest_framework import filters
 
 
 class ItemViewSet(viewsets.ModelViewSet):
@@ -35,6 +36,9 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('user',)
+
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 

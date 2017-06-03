@@ -37,6 +37,7 @@ class Common(Configuration):
         'debug_toolbar',
         'receipts',
         'rest_framework',
+        'django_filters'
 
     ]
 
@@ -116,7 +117,9 @@ class Common(Configuration):
         'DEFAULT_PERMISSION_CLASSES': [
             'rest_framework.permissions.IsAdminUser',
         ],
-        'PAGE_SIZE': 10
+        'PAGE_SIZE': 10,
+        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+
     }
 
 class Development(Common):
