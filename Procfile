@@ -1,1 +1,1 @@
-web: gunicorn -b "0.0.0.0:$PORT" -w 3 receipts.wsgi
+web: gunicorn -b "0.0.0.0:$PORT" -w 3 admin.wsgi

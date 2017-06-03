@@ -35,6 +35,8 @@ class Common(Configuration):
 
         'django_extensions',
         'debug_toolbar',
+        'receipts',
+
     ]
 
     MIDDLEWARE = [
@@ -49,7 +51,7 @@ class Common(Configuration):
 
     ]
 
-    ROOT_URLCONF = 'receipts.urls'
+    ROOT_URLCONF = 'admin.urls'
 
     TEMPLATES = [
         {
@@ -67,7 +69,7 @@ class Common(Configuration):
         },
     ]
 
-    WSGI_APPLICATION = 'receipts.wsgi.application'
+    WSGI_APPLICATION = 'admin.wsgi.application'
 
     # Database
     # https://docs.djangoproject.com/en/{{ docs_version }}/ref/settings/#databases

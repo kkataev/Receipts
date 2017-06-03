@@ -24,7 +24,7 @@ elif ENVIRONMENT == 'PRODUCTION':
 else:
     settings = 'development'
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'receipts.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'admin.settings')
 os.environ.setdefault('DJANGO_CONFIGURATION', settings.title())
 
 from configurations.wsgi import get_wsgi_application
