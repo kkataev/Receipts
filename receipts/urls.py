@@ -7,6 +7,9 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^helloworld/', include(admin.site.urls)),
 ]
+urlpatterns += patterns('',
+	(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes':True}),
+)
 
 if settings.DEBUG:
     import debug_toolbar
