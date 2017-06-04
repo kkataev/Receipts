@@ -14,17 +14,41 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('quantity', 'sum', 'price', 'name')
 
-
 class ReceiptSerializer(serializers.ModelSerializer):   
-    items = ItemSerializer(many=True)
+    items = serializers.SerializerMethodField('get_items_with')
+
     class Meta:
         model = Receipt
         fields = ('user', 'operator', 'total_sum', 'date_time', 'retail_place_address', 'kkt_reg_id', 'cash_total_sum', 'ecash_total_sum', 'items')
 
+    def get_items_with(self, obj):
+        if self.context.get('name'):
+            name = self.context['name']
+            items = Item.objects.filter(name=name)
+            serializer = ItemSerializer(items, many=True)
+            return serializer.data
+        else:
+            items = Item.objects.all()
+            serializer = ItemSerializer(items, many=True)
+            return serializer.data
 
 class ProfileSerializer(serializers.ModelSerializer):  
     user = UserSerializer()
-    receipts = ReceiptSerializer(many=True)
+    #receipts = ReceiptSerializer(many=True)
+    receipts = serializers.SerializerMethodField('get_receipts_with')
+
     class Meta:
         model = Profile
         fields = ('user', 'receipts')
+
+    def get_receipts_with(self, obj):
+        if self.context['request'].GET.get('name'):
+            name = self.context['request'].GET.get('name')
+            receipts = Receipt.objects.filter(items__name=name)
+            serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
+            return serializer.data
+        else:
+            receipts = Receipt.objects.all()
+            serializer = ReceiptSerializer(receipts, many=True)
+            return serializer.data
+

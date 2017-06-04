@@ -5,6 +5,7 @@ from django.shortcuts import render
 from receipts.models import Receipt, Item, Profile
 from django.contrib.auth.models import User
 
+import django_filters.rest_framework
 from rest_framework import viewsets
 from receipts.serializers import ItemSerializer, ReceiptSerializer, ProfileSerializer
 
@@ -15,7 +16,6 @@ from django.http import JsonResponse
 from django.core import serializers
 
 from rest_framework import filters
-
 
 class ItemViewSet(viewsets.ModelViewSet):
     """
@@ -36,12 +36,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('user',)
 
-    queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-
+    queryset = Profile.objects.all()
+    
 
 def index(request):
 
