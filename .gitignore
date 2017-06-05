@@ -37,7 +37,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 lib/
@@ -89,5 +88,4 @@ local_settings.py
 db.sqlite3
 
 # Bower
-asserts/
 static/
