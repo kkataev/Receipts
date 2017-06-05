@@ -24,6 +24,28 @@ from django.contrib.auth import get_user_model # If used custom user model
 
 from .serializers import UserSerializer
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from django.contrib.auth import login, logout
+
+from django.views.generic.base import TemplateView
+
+class OnePageAppView(TemplateView):
+    template_name = 'static/views/auth.html'
+
+
+class AuthView(APIView):
+    #authentication_classes = (authentication.QuietBasicAuthentication,)
+ 
+    def post(self, request, *args, **kwargs):
+        login(request, request.user)
+        return Response(UserSerializer(request.user).data)
+ 
+    def delete(self, request, *args, **kwargs):
+        logout(request)
+        return Response({})
+
 
 class CreateUserView(viewsets.ModelViewSet):
 
@@ -32,7 +54,7 @@ class CreateUserView(viewsets.ModelViewSet):
         permissions.AllowAny # Or anon users can't register
     ]
     serializer_class = UserSerializer
-    queryset = User.objects.all()
+    #queryset = User.objects.all()
 
 
 class ItemViewSet(viewsets.ModelViewSet):

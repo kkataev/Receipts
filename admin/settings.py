@@ -58,7 +58,7 @@ class Common(Configuration):
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
+            'DIRS': [os.path.join(BASE_DIR)],
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
@@ -111,7 +111,14 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/{{ docs_version }}/howto/static-files/
     STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'asserts'), )
+
+    STATICFILES_FINDERS = [  
+        'django.contrib.staticfiles.finders.FileSystemFinder',
+        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    ]
+
 
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
