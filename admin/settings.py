@@ -37,7 +37,7 @@ class Common(Configuration):
         'debug_toolbar',
         'receipts',
         'rest_framework',
-        'django_filters'
+        'django_filters',
 
     ]
 
@@ -115,12 +115,14 @@ class Common(Configuration):
 
     REST_FRAMEWORK = {
         'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAdminUser',
+            'rest_framework.permissions.IsAuthenticated',
         ],
         'PAGE_SIZE': 10,
-        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-
+        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+        'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
     }
+
+    LOGIN_REDIRECT_URL = '/profiles'
 
 class Development(Common):
     """

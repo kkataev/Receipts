@@ -1,13 +1,44 @@
 from receipts.models import Receipt, Item, Profile
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model # If used custom user model
 
 from rest_framework import serializers
 import django_filters
+from django.contrib.auth.models import Permission
 
-class UserSerializer(serializers.ModelSerializer):  
+UserModel = get_user_model()
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+
+
+        user = UserModel.objects.create(
+            username=validated_data['username']
+        )
+        user.set_password(validated_data['password'])
+        #permission = Permission.objects.get(name='Can add item')
+        user.user_permissions.add(Permission.objects.get(name='Can add item'), 
+            Permission.objects.get(name='Can delete item'),
+            Permission.objects.get(name='Can change item'),
+            Permission.objects.get(name='Can add profile'),
+            Permission.objects.get(name='Can delete profile'),
+            Permission.objects.get(name='Can change profile'),
+            Permission.objects.get(name='Can add receipt'),
+            Permission.objects.get(name='Can delete receipt'),
+            Permission.objects.get(name='Can change receipt'))
+
+        user.save()
+
+        return user
+
     class Meta:
-        model = User
+        model = UserModel
         fields = ('__all__')
+
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:

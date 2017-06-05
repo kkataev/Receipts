@@ -17,6 +17,24 @@ from django.core import serializers
 
 from rest_framework import filters
 
+
+from rest_framework import permissions
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth import get_user_model # If used custom user model
+
+from .serializers import UserSerializer
+
+
+class CreateUserView(viewsets.ModelViewSet):
+
+    model = get_user_model()
+    permission_classes = [
+        permissions.AllowAny # Or anon users can't register
+    ]
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+
 class ItemViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -38,8 +56,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
 
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()
-    
+
+    def get_queryset(self) :
+        result = Profile.objects.filter(user=self.request.user)
+        return result
 
 def index(request):
 
