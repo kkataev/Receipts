@@ -24,7 +24,7 @@ class ReceiptSerializer(serializers.ModelSerializer):
     def get_items_with(self, obj):
         if self.context.get('name'):
             name = self.context['name']
-            items = Item.objects.filter(name=name)
+            items = Item.objects.filter(name__contains=name)
             serializer = ItemSerializer(items, many=True)
             return serializer.data
         else:
@@ -42,13 +42,25 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('user', 'receipts')
 
     def get_receipts_with(self, obj):
+    	serializer = None
+    	name = None
+    	receipts = None
+
         if self.context['request'].GET.get('name'):
             name = self.context['request'].GET.get('name')
-            receipts = Receipt.objects.filter(items__name=name)
-            serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
-            return serializer.data
+            receipts = Receipt.objects.filter(items__name__contains=name)
         else:
             receipts = Receipt.objects.all()
             serializer = ReceiptSerializer(receipts, many=True)
-            return serializer.data
+
+        if self.context['request'].GET.get('date_start') or self.context['request'].GET.get('date_end'):
+            date_start = self.context['request'].GET.get('date_start')
+            date_end = self.context['request'].GET.get('date_end')
+            if date_start:
+                receipts = receipts.filter(date_time__gte=date_start)
+            if date_end:
+                receipts = receipts.filter(date_time__lte=date_end)
+
+        serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
+        return serializer.data
 
