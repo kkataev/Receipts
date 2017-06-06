@@ -1,10 +1,17 @@
-angular.module('authApp', ['ngResource']).
+angular.module('authApp', ['ngResource', 'ngRoute']).
     config(['$httpProvider', function($httpProvider){
         // django and angular both support csrf tokens. This tells
         // angular which cookie to add to what header.
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     }]).
+    config(function($routeProvider){
+        $routeProvider.when('/profile',
+        {
+            templateUrl:'static/views/profile.html',
+            controller:'profileController'
+        }).otherwise({redirectTo: "/"});
+    }).
     factory('api', function($resource){
         function add_auth_header(data, headersGetter){
             // as per HTTP authentication spec [1], credentials must be
@@ -28,7 +35,7 @@ angular.module('authApp', ['ngResource']).
             })
         };
     }).
-    controller('authController', function($scope, api) {
+    controller('authController', function($scope, api, $location) {
         // Angular does not detect auto-fill or auto-complete. If the browser
         // autofills "username", Angular will be unaware of this and think
         // the $scope.username is blank. To workaround this we use the
@@ -45,6 +52,7 @@ angular.module('authApp', ['ngResource']).
                     then(function(data){
                         // on good username and password
                         $scope.user = data.username;
+                        $location.path('/profile');
                     }).
                     catch(function(data){
                         // on incorrect username and password
@@ -68,4 +76,6 @@ angular.module('authApp', ['ngResource']).
                         alert(data.data.username);
                     });
             };
+    }).controller('profileController', function($scope, api, $location) {
+        console.log(1111);
     });

@@ -4,7 +4,7 @@
 	<link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<div class="navbar navbar-fixed-bottom" ng-controller="authController" ng-init="user='{{user.username}}'">
+	<div class="navbar navbar-fixed-top" ng-controller="authController" ng-init="user='{{user.username}}'">
 		{% verbatim %}
 		<div ng-show="user" class="navbar-form navbar-right">
 			<input type="submit" class="btn btn-default" ng-click="logout()" value="logout {{user}}"/>
@@ -23,6 +23,8 @@
 				</div>
 			</form>
 		</div>
+		<div ng-view>
+		</div>
 	</div>
 </body>
 	<script src="/static/bower_components/jquery/jquery.js">
@@ -33,6 +35,8 @@
 	</script> 
 	<script src="/static/bower_components/angular-resource/angular-resource.min.js">
 	</script> 
+	<script src="/static/bower_components/angular-route/angular-route.min.js">
+	</script>
 	<script src="/static/bower_components/autofill-event/src/autofill-event.js">
 	</script> 
 	<script src="/static/js/app.js">
