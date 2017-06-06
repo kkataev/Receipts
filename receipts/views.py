@@ -31,6 +31,33 @@ from django.contrib.auth import login, logout
 
 from django.views.generic.base import TemplateView
 
+from django.core.files.storage import FileSystemStorage
+import json
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt 
+def upload(request):
+    if request.method == 'POST' and request.FILES.get('file',False):
+        myfile = request.FILES['file']
+        # Read file 
+        json_string = myfile.read()
+        # Convert json string to python object
+        data = json.loads(json_string)
+
+        # Create model instances for each item
+        receipts = []
+        for document in data:
+            # create model instances...
+           receipt = Receipt(*document['document']['receipt'])
+           receipts.append(receipt)
+
+        # Create all in one query
+        Receipt.objects.bulk_create(receipts)
+        return HttpResponse("Successful")
+    return HttpResponse("Failed")
+
+
+
 class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
