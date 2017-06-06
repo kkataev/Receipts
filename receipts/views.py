@@ -37,22 +37,57 @@ from django.views.decorators.csrf import csrf_exempt
 
 @csrf_exempt 
 def upload(request):
-    if request.method == 'POST' and request.FILES.get('file',False):
+    if request.method == 'POST' and request.FILES.get('file',False) and request.user.is_authenticated():
         myfile = request.FILES['file']
         # Read file 
         json_string = myfile.read()
         # Convert json string to python object
         data = json.loads(json_string)
+        profile = Profile.objects.get(user__username=request.user.username)
 
         # Create model instances for each item
         receipts = []
         for document in data:
             # create model instances...
-           receipt = Receipt(*document['document']['receipt'])
-           receipts.append(receipt)
+            items = []
+            r = Receipt()
+            setattr(r, 'user', document['document']['receipt'].get('user'))
+            setattr(r, 'operator', document['document']['receipt'].get('operator'))
+            setattr(r, 'total_sum', document['document']['receipt'].get('totalSum'))
+            setattr(r, 'date_time', document['document']['receipt'].get('dateTime'))
+            setattr(r, 'retail_place_address', document['document']['receipt'].get('useretailPlaceAddressr'))
+            setattr(r, 'kkt_reg_id', document['document']['receipt'].get('kktRegId'))
+            setattr(r, 'cash_total_sum', document['document']['receipt'].get('cashTotalSum'))
+            setattr(r, 'ecash_total_sum', document['document']['receipt'].get('ecashTotalSum'))
+            setattr(r, 'nds_no', document['document']['receipt'].get('ndsNo'))
+            setattr(r, 'fiscal_document_number', document['document']['receipt'].get('fiscalDocumentNumber'))
+            setattr(r, 'taxation_type', document['document']['receipt'].get('taxationType'))
+            setattr(r, 'user_inn', document['document']['receipt'].get('userInn'))
+            setattr(r, 'raw_data', document['document']['receipt'].get('rawData'))
+            setattr(r, 'fiscal_sign', document['document']['receipt'].get('fiscalSign'))
+            setattr(r, 'operation_type', document['document']['receipt'].get('operationType'))
+            setattr(r, 'receipt_code', document['document']['receipt'].get('receiptCode'))
+            setattr(r, 'shift_number', document['document']['receipt'].get('shiftNumber'))
+            setattr(r, 'request_number', document['document']['receipt'].get('requestNumber'))
+            setattr(r, 'fiscal_drive_number', document['document']['receipt'].get('fiscalDriveNumber'))
+            setattr(r, 'profile', profile)
+            r.save()
+
+            for item in document['document']['receipt'].get('items'):
+            	i = Item()
+
+                setattr(i, 'quantity', item.get('quantity'))
+                setattr(i, 'sum', item.get('sum'))
+                setattr(i, 'price', item.get('price'))
+                setattr(i, 'name', item.get('name'))
+                setattr(i, 'ndsNo', item.get('ndsNo'))
+                setattr(i, 'receipt', r)
+                i.save()
+
+            #receipts.append(receipt)
 
         # Create all in one query
-        Receipt.objects.bulk_create(receipts)
+        #Receipt.objects.bulk_create(receipts)
         return HttpResponse("Successful")
     return HttpResponse("Failed")
 
