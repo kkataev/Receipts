@@ -1,3 +1,4 @@
-<div class="container" ng-controller="profileController">
-	<input class="form-control"/>
+<div class="container-fluid">
+	<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+	<span>{{$scope.receipts}}</span>
 </div>

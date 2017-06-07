@@ -1,0 +1,115 @@
+[  
+    {  
+        "document":{  
+            "receipt":{  
+                "user":"ООО \"САБ-ЛАЙН\"",
+                "operator":"КАССИР 1",
+                "ndsNo":36300,
+                "fiscalDocumentNumber":1900,
+                "totalSum":36300,
+                "dateTime":"2017-05-15T12:21:00",
+                "taxationType":4,
+                "userInn":"7813213784",
+                "retailPlaceAddress":"197022, СПб, пр.Большой П.С. д.98 Лит.А Пом.12Н",
+                "rawData":"AwBqAREEEAA4NzEwMDAwMTAwNDczMDgwDQQUADAwMDAzOTA0MTkwMDk0NjIgICAg+gMMADc4MTMyMTM3ODQgIBAEBABsBwAA9AMEACydGVk1BAYAMQTDvIDuDgQEABoAAAASBAQAHgAAAB4EAQAB/AMCAMyNIwRFAAYEKACR7a2koqjnIDMw4awgquPgqOagIOKl4KjvqqggICAgICAgICAgICAgNwQCAFx2/wMDAAPoAxMEAgBcdlEEAgBcdiMERQAGBCgAiq6qoC2KrqugIOCgp6suIDAsNCAgICAgICAgICAgICAgICAgICAgIDcEAgBwF/8DAwAD6AMTBAIAcBdRBAIAcBf9AwgAioCRkYiQIDEHBAEAADkEAgDMjVEEAgDMjRgEDgCOjo4gIpGAgS2LgImNIvEDLwAxOTcwMjIsIJGPoSwgr+Auga6r7OiuqSCPLpEuIKQuOTggi6jiLoAgj66sLjEyjR8EAQAE",
+                "fiscalSign":3283910894,
+                "operationType":1,
+                "receiptCode":3,
+                "kktRegId":"0000390419009462 ",
+                "shiftNumber":26,
+                "requestNumber":30,
+                "cashTotalSum":0,
+                "items":[  
+                    {  
+                        "quantity":1,
+                        "sum":30300,
+                        "price":30300,
+                        "ndsNo":30300,
+                        "name":"Сэндвич 30см курица терияки "
+                    },
+                    {  
+                        "quantity":1,
+                        "sum":6000,
+                        "price":6000,
+                        "ndsNo":6000,
+                        "name":"Кока-Кола разл. 0,4 "
+                    }
+                ],
+                "fiscalDriveNumber":"8710000100473080",
+                "ecashTotalSum":36300
+            }
+        }
+    },
+    {  
+        "document":{  
+            "receipt":{  
+                "user":"ООО \"БУРГЕР РУС\"",
+                "operator":"Кассир Боброва Елена Андреевна",
+                "fiscalDocumentNumber":3111,
+                "totalSum":22500,
+                "stornoItems":[  
+
+                ],
+                "nds18":3432,
+                "taxationType":1,
+                "userInn":"7719723690",
+                "fiscalSign":3701589652,
+                "rawData":"//8AHKUDARCZhxAAAQAmlTcADCeY6Mv2bAAMAgACAYADAHwBEQQQADg3MTAwMDAxMDAyNjk1MzcNBBQAMDAwMDI1OTYwNTA2MzA1OCAgICD6AwwANzcxOTcyMzY5MCAgEAQEACcMAAD0AwQAhCYaWTUEBgAxBNyhxpQOBAQAIwAAABIEBAAlAAAAHgQBAAH8AwIA5FcjBC8ABgQSAIvjqi4gqq6rpeeqqCCsoKvrpTcEAgAcJf8DAwAD6AMTBAIAHCVOBAIAqQUjBC8ABgQSAIqg4OIuIISl4KWipa0uIKygqzcEAgBAH/8DAwAD6AMTBAIAQB9OBAIAxAQjBCgABgQLAJGu4+EgkevgreupNwQCAMQJ/wMDAAPoAxMEAgDECU4EAgB9ASMEKQAGBAwAka7j4SCBoOChparuNwQCAMQJ/wMDAAPoAxMEAgDECU4EAgB9AQcEAQAAOQQCAORX/QMeAIqg4eGo4CCBrqHgrqKgIIWrpa2gIICtpOClpaKtoB8EAQABGAQQAI6OjiAigZOQg4WQIJCTkSJOBAIAaA2BBjgn7svafA==",
+                "requestNumber":37,
+                "operationType":1,
+                "dateTime":"2017-05-15T19:07:00",
+                "receiptCode":3,
+                "kktRegId":"0000259605063058",
+                "shiftNumber":35,
+                "modifiers":[  
+
+                ],
+                "ecashTotalSum":22500,
+                "cashTotalSum":0,
+                "items":[  
+                    {  
+                        "name":"Лук. колечки малые",
+                        "price":9500,
+                        "modifiers":[  
+
+                        ],
+                        "nds18":1449,
+                        "quantity":1,
+                        "sum":9500
+                    },
+                    {  
+                        "name":"Карт. Деревен. мал",
+                        "price":8000,
+                        "modifiers":[  
+
+                        ],
+                        "nds18":1220,
+                        "quantity":1,
+                        "sum":8000
+                    },
+                    {  
+                        "name":"Соус Сырный",
+                        "price":2500,
+                        "modifiers":[  
+
+                        ],
+                        "nds18":381,
+                        "quantity":1,
+                        "sum":2500
+                    },
+                    {  
+                        "name":"Соус Барбекю",
+                        "price":2500,
+                        "modifiers":[  
+
+                        ],
+                        "nds18":381,
+                        "quantity":1,
+                        "sum":2500
+                    }
+                ],
+                "fiscalDriveNumber":"8710000100269537"
+            }
+        }
+    }
+]

@@ -76,6 +76,28 @@ angular.module('authApp', ['ngResource', 'ngRoute']).
                         alert(data.data.username);
                     });
             };
-    }).controller('profileController', function($scope, api, $location) {
-        console.log(1111);
+    }).controller('profileController', function($scope, api, $location, $http) {
+
+        $http.get("api/profiles").success(function (data) {
+                console.log('success');
+                $scope.receipts = data.results[0].receipts;
+            }).error(function () {
+                console.log('error');
+            });
+
+        $scope.uploadFile = function(files) {
+            var fd = new FormData();
+            //Take the first selected file
+            fd.append("file", files[0]);
+
+            $http.post("api/upload/", fd, {
+                withCredentials: true,
+                headers: {'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function () {
+                console.log('success');
+            }).error(function () {
+                console.log('error');
+            });
+        };
     });

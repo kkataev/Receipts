@@ -43,6 +43,7 @@ def upload(request):
         json_string = myfile.read()
         # Convert json string to python object
         data = json.loads(json_string)
+        print(Profile.objects.all())
         profile = Profile.objects.get(user__username=request.user.username)
 
         # Create model instances for each item
