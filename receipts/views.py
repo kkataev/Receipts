@@ -48,26 +48,7 @@ def upload(request):
     if request.method == 'POST' and request.FILES.get('file',False) and request.user.is_authenticated():
         myfile = request.FILES['file']
         
-        # Read file and choose encoding
-        detector = UniversalDetector()
-        detector.reset()
-        for line in file('/tmp/' + myfile.name):
-            detector.feed(line)
-            if detector.done: break
-        detector.close()
-        print(detector.result['encoding'])
-
-        BLOCKSIZE = 1048576 # or some other, desired size in bytes
-        with codecs.open('/tmp/' + myfile.name, "r", detector.result['encoding']) as sourceFile:
-            with codecs.open('/tmp/converted.json', "w", "utf-8") as targetFile:
-                while True:
-                    contents = sourceFile.read(BLOCKSIZE)
-                    if not contents:
-                        break
-                    targetFile.write(contents)
-
-        opened = open('/tmp/' + 'converted.json', 'r')
-        json_string = opened.read()
+        json_string = myfile.read()
 
         # Convert json string to python object
         data = json.loads(json_string)
