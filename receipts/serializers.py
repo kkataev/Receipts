@@ -33,6 +33,12 @@ class UserSerializer(serializers.ModelSerializer):
 
         user.save()
 
+        profile = Profile.objects.filter(user__username=validated_data['username'])
+        if not profile: 
+            p = Profile()
+            setattr(p, 'user', user)
+            p.save()
+
         return user
 
     class Meta:
@@ -72,12 +78,13 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('user', 'receipts')
 
+
     def get_receipts_with(self, obj):
     	serializer = None
     	name = None
     	receipts = None
 
-        receipts = Receipt.objects.all()
+        receipts = Receipt.objects.filter(profile=obj)
 
         if self.context['request'].GET.get('name'):
             name = self.context['request'].GET.get('name')

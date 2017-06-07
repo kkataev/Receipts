@@ -35,19 +35,42 @@ from django.core.files.storage import FileSystemStorage
 import json
 from django.views.decorators.csrf import csrf_exempt
 import codecs
+from chardet.universaldetector import UniversalDetector
+
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 
 @csrf_exempt 
 def upload(request):
     if request.method == 'POST' and request.FILES.get('file',False) and request.user.is_authenticated():
         myfile = request.FILES['file']
-        # Read file 
-        myfile = myfile.decode("utf-8", errors='replace')
+        
+        # Read file and choose encoding
+        detector = UniversalDetector()
+        detector.reset()
+        for line in file('/tmp/' + myfile.name):
+            detector.feed(line)
+            if detector.done: break
+        detector.close()
+        print(detector.result['encoding'])
 
-        json_string = myfile.read()
-        print(json_string)
+        BLOCKSIZE = 1048576 # or some other, desired size in bytes
+        with codecs.open('/tmp/' + myfile.name, "r", detector.result['encoding']) as sourceFile:
+            with codecs.open('/tmp/converted.json', "w", "utf-8") as targetFile:
+                while True:
+                    contents = sourceFile.read(BLOCKSIZE)
+                    if not contents:
+                        break
+                    targetFile.write(contents)
+
+        opened = open('/tmp/' + 'converted.json', 'r')
+        json_string = opened.read()
+
         # Convert json string to python object
         data = json.loads(json_string)
-        print(Profile.objects.all())
         profile = Profile.objects.get(user__username=request.user.username)
 
         # Create model instances for each item
@@ -89,10 +112,6 @@ def upload(request):
                 setattr(i, 'receipt', r)
                 i.save()
 
-            #receipts.append(receipt)
-
-        # Create all in one query
-        #Receipt.objects.bulk_create(receipts)
         return HttpResponse("Successful")
     return HttpResponse("Failed")
 
@@ -147,7 +166,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
 
     def get_queryset(self) :
-        result = Profile.objects.filter(user=self.request.user)
+        result = Profile.objects.filter(user__username=self.request.user)
         return result
 
 def index(request):

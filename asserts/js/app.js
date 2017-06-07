@@ -78,10 +78,10 @@ angular.module('authApp', ['ngResource', 'ngRoute']).
             };
     }).controller('profileController', function($scope, api, $location, $http) {
 
-        $http.get("api/profiles").success(function (data) {
+        $http.get("api/profiles").then(function (data) {
                 console.log('success');
-                $scope.receipts = data.results[0].receipts;
-            }).error(function () {
+                $scope.receipts = data.data.results[0].receipts;
+            }, function () {
                 console.log('error');
             });
 

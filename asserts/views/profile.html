@@ -1,4 +1,7 @@
 <div class="container-fluid">
 	<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-	<span>{{$scope.receipts}}</span>
+	<div ng-repeat="receipt in receipts">
+		<span>{{receipt.user}}</span>
+
+	</div>
 </div>
