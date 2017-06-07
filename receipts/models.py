@@ -27,7 +27,7 @@ class Receipt(models.Model):
     taxation_type = models.IntegerField(blank=True, null = True)
     user_inn = models.TextField(max_length=500, blank=True, null = True)
     raw_data = models.TextField(max_length=1000, blank=True, null = True)
-    fiscal_sign = models.IntegerField(blank=True, null = True)
+    fiscal_sign = models.BigIntegerField(blank=True, null = True)
     operation_type = models.IntegerField(blank=True, null = True)
     receipt_code = models.IntegerField(blank=True, null = True)
     shift_number = models.IntegerField(blank=True, null = True)
