@@ -34,13 +34,17 @@ from django.views.generic.base import TemplateView
 from django.core.files.storage import FileSystemStorage
 import json
 from django.views.decorators.csrf import csrf_exempt
+import codecs
 
 @csrf_exempt 
 def upload(request):
     if request.method == 'POST' and request.FILES.get('file',False) and request.user.is_authenticated():
         myfile = request.FILES['file']
         # Read file 
+        myfile = myfile.decode("utf-8", errors='replace')
+
         json_string = myfile.read()
+        print(json_string)
         # Convert json string to python object
         data = json.loads(json_string)
         print(Profile.objects.all())
