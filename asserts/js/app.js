@@ -70,18 +70,21 @@ angular.module('authApp', ['ngResource', 'ngRoute']).
             $event.preventDefault();
             // create user and immediatly login on success
             api.users.create($scope.getCredentials()).
-                $promise.
-                    then($scope.login).
-                    catch(function(data){
-                        alert(data.data.username);
-                    });
+                $promise.then($scope.login)
             };
     }).controller('profileController', function($scope, api, $location, $http) {
+        $scope.receipts = [];
+
+        $scope.$watch('user', function(newValue, oldValue) {
+            $scope.getProfile();
+        });
 
         $scope.getProfile = function () {
+            $scope.receipts = [];
             $http.get("api/profiles").then(function (data) {
                 console.log('success');
-                $scope.receipts = data.data.results[0].receipts;
+                if (data && data.data && data.data.results[0] && data.data.results[0].receipts)
+                    $scope.receipts = data.data.results[0].receipts;
             }, function () {
                 console.log('error');
             });
