@@ -78,12 +78,14 @@ angular.module('authApp', ['ngResource', 'ngRoute']).
             };
     }).controller('profileController', function($scope, api, $location, $http) {
 
-        $http.get("api/profiles").then(function (data) {
+        $scope.getProfile = function () {
+            $http.get("api/profiles").then(function (data) {
                 console.log('success');
                 $scope.receipts = data.data.results[0].receipts;
             }, function () {
                 console.log('error');
             });
+        }
 
         $scope.uploadFile = function(files) {
             var fd = new FormData();
@@ -96,8 +98,11 @@ angular.module('authApp', ['ngResource', 'ngRoute']).
                 transformRequest: angular.identity
             }).success(function () {
                 console.log('success');
+                $scope.getProfile();
             }).error(function () {
                 console.log('error');
             });
         };
+
+        $scope.getProfile();
     });
