@@ -19,7 +19,7 @@ class Receipt(models.Model):
     total_sum = models.IntegerField(blank=True, null = True)
     date_time = models.DateTimeField(auto_now=False, blank=True, null = True)
     retail_place_address = models.TextField(max_length=500, blank=True, null = True)
-    kkt_reg_id = models.IntegerField(blank=True, null = True)
+    kkt_reg_id = models.TextField(blank=True, null = True)
     cash_total_sum = models.IntegerField(blank=True, null = True)
     ecash_total_sum = models.IntegerField(blank=True, null = True)
     nds_no = models.IntegerField(blank=True, null = True)
