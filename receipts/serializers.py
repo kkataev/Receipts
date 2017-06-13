@@ -7,6 +7,7 @@ import django_filters
 from django.contrib.auth.models import Permission
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 
 UserModel = get_user_model()
 
@@ -75,10 +76,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     #receipts = ReceiptSerializer(many=True)
     receipts = serializers.SerializerMethodField('get_receipts_with')
+    rec_count = serializers.ReadOnlyField( source='receipts.count' )
 
     class Meta:
         model = Profile
-        fields = ('user', 'receipts')
+        fields = ('user', 'receipts', 'rec_count')
 
 
     def get_receipts_with(self, obj):
@@ -105,7 +107,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             receipts = receipts.filter(user__contains=user)
 
         if self.context['request'].GET.get('page_num'):
-            paginator = Paginator(receipts, 2) # Show 25 contacts per page
+            paginator = Paginator(receipts, 10) # Show 25 contacts per page
             page_num = int(self.context['request'].GET.get('page_num'))
             try:
                 receipts = paginator.page(page_num)
@@ -116,6 +118,8 @@ class ProfileSerializer(serializers.ModelSerializer):
                 # If page is out of range (e.g. 9999), deliver last page of results.
                 receipts = paginator.page(paginator.num_pages)
 
+
         serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
+
         return serializer.data
 

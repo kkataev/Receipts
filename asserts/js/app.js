@@ -76,7 +76,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']
         $scope.receipts = [];
         $scope.currentPage = 1;
         $scope.maxSize = 5;
-        $scope.totalItems = 20;
+        $scope.totalItems = 0;
 
         $scope.$watch('user', function(newValue, oldValue) {
             $scope.getProfile();
@@ -99,6 +99,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']
             $http.get("api/profiles?" + search).then(function (data) {
                 console.log('success');
                 if (data && data.data && data.data.results[0] && data.data.results[0].receipts)
+                    $scope.totalItems = data.data.results[0].rec_count;
                     $scope.receipts = data.data.results[0].receipts;
             }, function () {
                 console.log('error');
