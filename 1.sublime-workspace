@@ -1,0 +1,473 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "asserts/views/profile.html",
+			"settings":
+			{
+				"buffer_size": 2180,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "asserts/js/app.js",
+			"settings":
+			{
+				"buffer_size": 10027,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "asserts/views/auth.html",
+			"settings":
+			{
+				"buffer_size": 2206,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"last_filter": "Package Control: ins",
+		"selected_items":
+		[
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/kkataev/Documents/Receipts",
+		"/C/Users/kkataev/Documents/Receipts/admin",
+		"/C/Users/kkataev/Documents/Receipts/asserts",
+		"/C/Users/kkataev/Documents/Receipts/asserts/js",
+		"/C/Users/kkataev/Documents/Receipts/asserts/views",
+		"/C/Users/kkataev/Documents/Receipts/static",
+		"/C/Users/kkataev/Documents/Receipts/static/bower_components",
+		"/C/Users/kkataev/Documents/Receipts/static/bower_components/bootstrap/dist",
+		"/C/Users/kkataev/Documents/Receipts/static/bower_components/bootstrap/dist/js",
+		"/C/Users/kkataev/Documents/Receipts/static/bower_components/underscore",
+		"/C/Users/kkataev/Documents/Receipts/static/views"
+	],
+	"file_history":
+	[
+		"/C/Users/kkataev/Documents/Receipts/static/views/profile.html",
+		"/C/Users/kkataev/Documents/Receipts/README.md",
+		"/C/Users/kkataev/Documents/Receipts/receipts.json",
+		"/C/Users/kkataev/Documents/GAX/8.5.250.05/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/nls/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/libs/ark-components-km.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/app/views/server.html",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/lib/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/app/controllers/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/app/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/help/manifest.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/nls/lk.js",
+		"/C/Users/kkataev/Documents/Repos/gax-pii-plugin/src/main/resources/web/styles/manifest.js",
+		"/C/Users/kkataev/Documents/Package - Copy/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/Package - Copy/templates/PrivacyManager.xml",
+		"/C/Users/kkataev/Downloads/import (1).json",
+		"/C/GCTI/Genesys Administrator Extension/gax_startup.bat",
+		"/C/GCTI/Genesys Administrator Extension/conf/gax.properties",
+		"/C/Users/kkataev/Downloads/Stat Server/8.5.107.01/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/Message Server/8.5.100.13/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/pm/8.5.110.08/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/backup_170412_051812.json",
+		"/C/Users/kkataev/Documents/My Received Files/eServicesManagerPluginForGAX_852.apd",
+		"/C/GCTI/eServices 8.5/Universal Contact Server Manager/UcsManagerDic.properties",
+		"/C/GCTI/MsgServer/Message Server/read_me.html",
+		"/C/Users/kkataev/Downloads/scs/8.5.100.24/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/ip_description.xml",
+		"/C/GCTI/Local Control Agent/lca.cfg",
+		"/C/Users/kkataev/Downloads/Contact server/8.5.200.19/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/Contact server/Contact server manager/8.5.000.03/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/Package - Copy/templates/PrivacyManager.tpl",
+		"/C/Users/kkataev/Downloads/cm/8.1.100.07/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/GAX/8.5.240.11/Templates/Genesys_Administrator_Extension_852.xml",
+		"/C/GCTI/Genesys Administrator Extension/set.txt",
+		"/C/GCTI/Multitenant Configuration Server/confserv.cfg",
+		"/C/GCTI/Genesys Administrator Extension/conf/asd_silentini_ConfigServer.properties",
+		"/C/GCTI/Genesys Administrator Extension/conf/asd_hostinfo.properties",
+		"/C/GCTI/Local Control Agent/ip_description.xml",
+		"/C/GCTI/Genesys Administrator Extension/conf/fim.properties",
+		"/C/GCTI/Multitenant Configuration Server/confserv.sample",
+		"/C/Users/kkataev/Downloads/cs/cs/ip/ip_description.xml",
+		"/C/GCTI/Genesys Administrator Extension/ip_description.xml",
+		"/C/Users/kkataev/Downloads/cs/dbs/ip/ip_description.xml",
+		"/C/GCTI/Genesys Administrator Extension/webapp/WEB-INF/classes/xmltemplates/ga_default/genesys_silent_ini.xml",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/metadata/genesys_silent_ini.xml",
+		"/C/Users/kkataev/Downloads/lca/8.5.100/ip/read_me.html",
+		"/C/Users/kkataev/Downloads/lca/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/lca/8.5.100/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/setup.iss",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/setup.ini",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/setup.exe",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/layout.bin",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/ISSetup.dll",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/data1.hdr",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/data2.cab",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/data1.cab",
+		"/C/Users/kkataev/Downloads/lca/LCA64/ip/read_me.html",
+		"/C/GCTI/Local Control Agent/read_me.html",
+		"/C/Users/kkataev/Downloads/lca/ip/read_me.html",
+		"/C/GCTI/Configuration Server/confserv.cfg",
+		"/C/GCTI/Genesys Administrator Extension/settings.txt",
+		"/C/Users/kkataev/Downloads/cs/8.5.000.16/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/dbserver/8.1.301.14/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/cs/ip/ip_description.xml",
+		"/C/GCTI/DB Server/dbserver.cfg",
+		"/C/Users/kkataev/Downloads/dbserver/DBServer-ENU-8.1.301.14-1.x86_64/dbserver.cfg",
+		"/C/Users/kkataev/AppData/Local/Temp/Temp1_DBServer-ENU-8.1.301.14-1.x86_64.zip/dbserver.cfg",
+		"/C/Users/kkataev/Downloads/cs/8.5.000.16/windows/b1/ip/metadata/genesys_silent_ini.xml",
+		"/C/Users/kkataev/Downloads/scs/ip/read_me.html",
+		"/C/Users/kkataev/Documents/My Received Files/Local Control Agent/Local Control Agent/lca.20170517_150732_834.snapshot.log",
+		"/C/Users/kkataev/Downloads/scs/8.5.100.04/windows/b1/ip/ip_description.xml",
+		"//spb-fs/Genesys/8.5/SCServer64/8.5.100.04/windows/b1/ip/metadata/genesys_silent_ini.xml",
+		"/C/Users/kkataev/Downloads/scs/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/GAX/8.5.240.11/windows/b1/ip/ip_description.xml",
+		"/C/Users/kkataev/Documents/My Received Files/Local Control Agent/Local Control Agent/lca.cfg",
+		"/C/Users/kkataev/Downloads/import.json",
+		"/C/Users/kkataev/Downloads/backup_170411_025041.json",
+		"//spb-fs/Genesys/8.5/GAX64/8.5.240.06/Templates/Genesys_Administrator_Extension_852.xml",
+		"//spb-fs/Genesys/8.5/GAX64/8.5.240.06/windows/b1/box.info",
+		"//spb-fs/Genesys/8.5/GAX64/8.5.240.06/windows/b1/box_contents.xml",
+		"//spb-fs/Genesys/8.5/GAX64/8.5.240.06/windows/b1/ip/ip_description.xml",
+		"//spb-fs/Genesys/8.5/GAX64/8.5.240.06/windows/b1/ip/read_me.html",
+		"/C/Users/kkataev/Downloads/backup_170411_072401.json",
+		"/C/Users/kkataev/Downloads/backup_170411_081331.json",
+		"/C/Users/kkataev/Downloads/backup_170411_070801.json",
+		"/C/Users/kkataev/Downloads/backup_170411_125739.json",
+		"/C/Users/kkataev/Downloads/backup_170404_060707.json",
+		"/C/Users/kkataev/Downloads/backup_170405_080511.json",
+		"/C/Users/kkataev/Downloads/backup_170406_033817.json",
+		"/C/Users/kkataev/Downloads/backup_170406_034506.json",
+		"/C/Users/kkataev/Downloads/backup_170406_034213.json",
+		"/C/Users/kkataev/Downloads/backup_170411_022606.json",
+		"/C/Users/kkataev/Downloads/backup_170411_010437.json",
+		"/C/Users/kkataev/Downloads/backup_170411_032324.json",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/index.html",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/muse-throttle-db.sqlite3",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form-u1900.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form_throttle.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form_process.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form_check.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form-u13723.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form-u13380.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form-u12404.php",
+		"/C/Users/kkataev/Downloads/domains-nomad-art.kz-public_html/public_html/scripts/form-u12427.php",
+		"/C/Users/kkataev/Documents/Package/templates/InteractionServerClusterPluginForGAX_851.tpl",
+		"/C/Users/kkataev/Documents/Package/templates/InteractionServerClusterPluginForGAX_851.xml",
+		"/C/Users/kkataev/Documents/Package/templates/gax-plugin-itxsrv-cluster.tpl",
+		"/C/Users/kkataev/Documents/Package/ip/ip_description.xml",
+		"/C/Users/kkataev/Downloads/Ex_Files_ReactJS_Basics/Ch05/05_02/finish/index.html",
+		"/C/Users/kkataev/Downloads/Ex_Files_ReactJS_Basics/Ch06/06_02/start/bulletin-board/package.json",
+		"/C/Users/kkataev/Downloads/Ex_Files_ReactJS_Basics/Ch05/05_01/finish/index.html",
+		"/C/Users/kkataev/Documents/buildCLTR/my_production_test_build.bat",
+		"/C/Users/kkataev/Documents/buildCLTR/prod_dev_build_params.ini",
+		"/C/GCTI/Genesys Administrator Extension/webapp/WEB-INF/web.xml",
+		"/C/GCTI/Genesys Administrator Extension/webapp/plugins/gax-km/app/app.ctrl.js",
+		"/C/GCTI/Genesys Administrator Extension/webapp/plugins/gax-km/manifest.js",
+		"/C/GCTI/Genesys Administrator Extension/webapp/org/eclipse/jetty/http/mime.properties",
+		"/C/Users/kkataev/Documents/Repos/gax-cluster/pom.xml",
+		"/C/GCTI/Genesys Administrator Extension/webapp/javax/servlet/resources/j2ee_1_4.xsd",
+		"/C/GCTI/Genesys Administrator Extension/webapp/javax/servlet/resources/jsp_2_0.xsd",
+		"/C/GCTI/Genesys Administrator Extension/webapp/META-INF/MANIFEST.MF",
+		"/C/GCTI/Genesys Administrator Extension/webapp/plugin.properties",
+		"/C/GCTI/Genesys Administrator Extension/webapp/plugins/gax-km/app.build.json",
+		"/C/GCTI/Genesys Administrator Extension/webapp/org/eclipse/jetty/webapp/webdefault.xml",
+		"/C/Users/kkataev/Downloads/Test Data/import.json",
+		"/C/Users/kkataev/Documents/Repos/gax-cluster/gax-plugin-itxsrv-cluster.iml",
+		"/C/Users/kkataev/Documents/buildPII/my_production_test_build.bat"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"C:\\Users\\kkataev\\Documents\\Repos\\gax-plugin-itxsrv-cluster\\src\\main\\resources\\web\\app"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"#",
+			"$uibModal",
+			"modal",
+			"uibModal",
+			"dropdown",
+			"PrivacyManager",
+			"KKATAEV_GAX",
+			"8.5.110.07",
+			"appli",
+			"application.pro",
+			"applica",
+			"Duplicated rule",
+			"uplicated",
+			"dup",
+			"uplicated",
+			"pii",
+			"prog",
+			"}\n",
+			"core",
+			"regex",
+			"а",
+			"height",
+			"gridDim",
+			"options",
+			"plugins-DataGrid-RowIdx",
+			"Plug",
+			"privilege",
+			"access",
+			"getItxSrv",
+			"CfgApplication",
+			"urls",
+			"urls.api",
+			"create",
+			"]\n",
+			"96"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"modal",
+			"8.5.300.01",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "asserts/views/profile.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2180,
+								2180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "asserts/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10027,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6121,
+								6129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2268.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "asserts/views/auth.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2206,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2106,
+								2106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mvn_exec":
+	{
+		"height": 130.0
+	},
+	"pinned_build_system": "",
+	"project": "1.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 419.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
