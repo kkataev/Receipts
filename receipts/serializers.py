@@ -61,11 +61,11 @@ class ReceiptSerializer(serializers.ModelSerializer):
     def get_items_with(self, obj):
         if self.context.get('name'):
             name = self.context['name']
-            items = Item.objects.filter(name__contains=name)
+            items = Item.objects.filter(name__contains=name, receipt=obj)
             serializer = ItemSerializer(items, many=True)
             return serializer.data
         else:
-            items = Item.objects.all()
+            items = Item.objects.filter(receipt=obj)
             serializer = ItemSerializer(items, many=True)
             return serializer.data
 

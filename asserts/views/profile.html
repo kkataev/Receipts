@@ -7,7 +7,7 @@
         <thead>
             <th>Магазин</th>
             <th>Дата покупки</th>
-            <th>Сумма</th>
+            <th>Сумма, р</th>
         </thead>
         <tr ng-repeat-start="receipt in receipts">
             <td>
@@ -23,9 +23,9 @@
         <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems">
             <td colspan="3">
                 <div>Имя: {{item.name}}</div>
-                <div>Цена: {{item.price/100}}</div>
+                <div>Цена, р: {{item.price/100}}</div>
                 <div>Количество: {{item.quantity}}</div>
-                <div>Сумма: {{item.sum/100}}</div>
+                <div>Сумма, р: {{item.sum/100}}</div>
             </td>
         </tr>
     </table>
