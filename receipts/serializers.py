@@ -6,6 +6,8 @@ from rest_framework import serializers
 import django_filters
 from django.contrib.auth.models import Permission
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 UserModel = get_user_model()
 
 
@@ -102,6 +104,16 @@ class ProfileSerializer(serializers.ModelSerializer):
             user = self.context['request'].GET.get('user')
             receipts = receipts.filter(user__contains=user)
 
+        paginator = Paginator(receipts, 1) # Show 25 contacts per page
+        page = int(self.context['request'].GET.get('page'))
+        try:
+            receipts = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            receipts = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            receipts = paginator.page(paginator.num_pages)
 
         serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
         return serializer.data
