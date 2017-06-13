@@ -86,7 +86,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     	name = None
     	receipts = None
 
-        receipts = Receipt.objects.filter(profile=obj)
+        receipts = Receipt.objects.filter(profile=obj).order_by('date_time')
 
         if self.context['request'].GET.get('name'):
             name = self.context['request'].GET.get('name')
@@ -104,16 +104,17 @@ class ProfileSerializer(serializers.ModelSerializer):
             user = self.context['request'].GET.get('user')
             receipts = receipts.filter(user__contains=user)
 
-        paginator = Paginator(receipts, 1) # Show 25 contacts per page
-        page = int(self.context['request'].GET.get('page'))
-        try:
-            receipts = paginator.page(page)
-        except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            receipts = paginator.page(1)
-        except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            receipts = paginator.page(paginator.num_pages)
+        if self.context['request'].GET.get('page_num'):
+            paginator = Paginator(receipts, 2) # Show 25 contacts per page
+            page_num = int(self.context['request'].GET.get('page_num'))
+            try:
+                receipts = paginator.page(page_num)
+            except PageNotAnInteger:
+                # If page is not an integer, deliver first page.
+                receipts = paginator.page(1)
+            except (EmptyPage, InvalidPage):
+                # If page is out of range (e.g. 9999), deliver last page of results.
+                receipts = paginator.page(paginator.num_pages)
 
         serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
         return serializer.data

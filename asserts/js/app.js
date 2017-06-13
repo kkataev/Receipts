@@ -90,7 +90,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']
         $scope.getProfile = function () {
             $scope.receipts = [];
             var search = '';
-            search += "page=" + $scope.currentPage;
+            search += "page_num=" + $scope.currentPage;
             if ($scope.dateStart) search += "&date_start=" + $scope.dateStart;
             if ($scope.dateEnd) search += "&date_end=" + $scope.dateEnd;
             if ($scope.name) search += "&name=" + $scope.name;
