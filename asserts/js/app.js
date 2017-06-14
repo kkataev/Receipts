@@ -128,6 +128,15 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             $scope.getProfile();
         }
 
+        $scope.deleteRec = function (receipt) {
+            $http.delete("api/receipts/" + receipt.id).then(function (data) {
+                console.log('success');
+                $scope.getProfile();
+            }, function () {
+                console.log('error');
+            });
+        }
+
         $scope.uploadFile = function(files) {
             var fd = new FormData();
             //Take the first selected file

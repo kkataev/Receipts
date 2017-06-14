@@ -31,16 +31,22 @@
               <th>Магазин</th>
               <th>Дата покупки</th>
               <th>Сумма, р</th>
+              <th>Управление</th>
           </thead>
           <tr ng-repeat-start="receipt in receipts">
               <td>
-                  <div ng-click="showItems = showItems ? false : true">{{receipt.user}}</div>
+                  <div class="link" ng-click="showItems = showItems ? false : true">{{receipt.user}}</div>
               </td> 
               <td>
                   <div>{{receipt.date_time}}</div>
               </td>
               <td>
                   <div>{{receipt.total_sum/100}}</div>
+              </td>
+              <td>
+                  <div>
+                    <button type="button" class="btn btn-danger btn-xs" ng-click="deleteRec(receipt)">Удалить</button>
+                  </div>
               </td>
           </tr>
           <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems">
@@ -52,6 +58,6 @@
               </td>
           </tr>
       </table>
-      <ul ng-show="receipts.length" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+      <ul ng-show="receipts.length" uib-pagination previous-text="Назад" next-text="Вперед" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
     </div>
 </div>

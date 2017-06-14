@@ -56,10 +56,11 @@ class ItemSerializer(serializers.ModelSerializer):
 
 class ReceiptSerializer(serializers.ModelSerializer):   
     items = serializers.SerializerMethodField('get_items_with')
-
+    id = serializers.ReadOnlyField()
+    
     class Meta:
         model = Receipt
-        fields = ('user', 'operator', 'total_sum', 'date_time', 'retail_place_address', 'kkt_reg_id', 'cash_total_sum', 'ecash_total_sum', 'items')
+        fields = ('id', 'user', 'operator', 'total_sum', 'date_time', 'retail_place_address', 'kkt_reg_id', 'cash_total_sum', 'ecash_total_sum', 'items')
 
     def get_items_with(self, obj):
         if self.context.get('name'):

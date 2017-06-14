@@ -10,19 +10,19 @@
 	<div class="container navbar navbar-fixed-top">
 		{% verbatim %}
 		<div ng-show="user" class="navbar-form navbar-right">
-			<input type="submit" class="btn btn-default" ng-click="logout()" value="logout {{user}}"/>
+			<input type="submit" class="btn btn-default" ng-click="logout()" value="Выйти {{user}}"/>
 		</div>
 		<div ng-hide="user">
 			<form id="id_auth_form" class="navbar-form navbar-right" ng-submit="login()">
 				<div class="form-group">
-					<input ng-model="username" required name="username" type="text" placeholder="username" class="form-control">
+					<input ng-model="username" required name="username" type="text" placeholder="имя" class="form-control">
 				</div>
 				<div class="form-group">
-					<input ng-model="password" required name="password" type="password" placeholder="password" class="form-control">
+					<input ng-model="password" required name="password" type="password" placeholder="пароль" class="form-control">
 				</div>
 				<div class="btn-group">
-					<input type="submit" class="btn btn-default" value="login">
-					<input type="submit" class="btn btn-default" value="register" ng-click="register($event)">
+					<input type="submit" class="btn btn-default" value="Войти">
+					<input type="submit" class="btn btn-default" value="Зарегистрироваться" ng-click="register($event)">
 				</div>
 			</form>
 		</div>
