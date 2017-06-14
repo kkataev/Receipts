@@ -76,13 +76,15 @@ class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     #receipts = ReceiptSerializer(many=True)
     receipts = serializers.SerializerMethodField('get_receipts_with')
-    rec_count = serializers.ReadOnlyField( source='receipts.count' )
+    rec_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
         fields = ('user', 'receipts', 'rec_count')
 
-
+    def get_rec_count(self, obj):
+        return self.rec_count
+    
     def get_receipts_with(self, obj):
     	serializer = None
     	name = None
@@ -106,6 +108,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             user = self.context['request'].GET.get('user')
             receipts = receipts.filter(user__contains=user)
 
+        self.rec_count = receipts.count()
+
         if self.context['request'].GET.get('page_num'):
             paginator = Paginator(receipts, 10) # Show 25 contacts per page
             page_num = int(self.context['request'].GET.get('page_num'))
@@ -114,7 +118,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             except PageNotAnInteger:
                 # If page is not an integer, deliver first page.
                 receipts = paginator.page(1)
-            except (EmptyPage, InvalidPage):
+            except EmptyPage:
                 # If page is out of range (e.g. 9999), deliver last page of results.
                 receipts = paginator.page(paginator.num_pages)
 

@@ -1,4 +1,4 @@
-angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']).
+angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loading-bar']).
     config(['$httpProvider', function($httpProvider){
         // django and angular both support csrf tokens. This tells
         // angular which cookie to add to what header.
@@ -72,11 +72,19 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']
             api.users.create($scope.getCredentials()).
                 $promise.then($scope.login)
             };
-    }).controller('profileController', function($scope, api, $location, $http) {
+    }).controller('profileController', function($scope, api, $location, $http, $filter) {
         $scope.receipts = [];
         $scope.currentPage = 1;
         $scope.maxSize = 5;
         $scope.totalItems = 0;
+        $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+
+        $scope.formats = 'dd-MMMM-yyyy';
+        $scope.popupStart = {opened: false}
+        $scope.popupEnd = {opened: false}
 
         $scope.$watch('user', function(newValue, oldValue) {
             $scope.getProfile();
@@ -104,6 +112,20 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'ngAnimate']
             }, function () {
                 console.log('error');
             });
+        }
+
+        $scope.openStart = function () {
+            $scope.popupStart.opened = true
+        }
+
+        $scope.openEnd = function () {
+            $scope.popupEnd.opened = true
+        }
+
+        $scope.applyFilters = function () {
+            if ($scope.dateStart) $scope.dateStart = $filter('date')($scope.dateStart, "yyyy-MM-dd");
+            if ($scope.dateEnd) $scope.dateEnd = $filter('date')($scope.dateEnd, "yyyy-MM-dd");
+            $scope.getProfile();
         }
 
         $scope.uploadFile = function(files) {

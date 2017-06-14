@@ -2,32 +2,55 @@
     
     <input ng-show="user" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
     
-
-    <table class="table table-striped" style="margin-top: 20px;" ng-show="receipts.length">
-        <thead>
-            <th>Магазин</th>
-            <th>Дата покупки</th>
-            <th>Сумма, р</th>
-        </thead>
-        <tr ng-repeat-start="receipt in receipts">
-            <td>
-                <div ng-click="showItems = showItems ? false : true">{{receipt.user}}</div>
-            </td> 
-            <td>
-                <div>{{receipt.date_time}}</div>
-            </td>
-            <td>
-                <div>{{receipt.total_sum/100}}</div>
-            </td>
-        </tr>
-        <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems">
-            <td colspan="3">
-                <div>Имя: {{item.name}}</div>
-                <div>Цена, р: {{item.price/100}}</div>
-                <div>Количество: {{item.quantity}}</div>
-                <div>Сумма, р: {{item.sum/100}}</div>
-            </td>
-        </tr>
-    </table>
-    <ul ng-show="receipts.length" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+    <div class="col-xs-6 col-md-4">
+      <h2>Фильтры</h2>
+      <span>Имя товара: </span>
+      <p><input class="form-control" type="text" ng-model="name"></p>
+      <span>Название магазина: </span>
+      <p><input class="form-control" type="text" ng-model="storeName"></p>
+      <span>Дата начала: </span>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateStart" is-open="popupStart.opened" datepicker-options="dateOptions" ng-required="false" close-text="Закрыть" current-text="Сегодня" clear-text="Очистить" alt-input-formats="altInputFormats" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default btn-datepicker" ng-click="openStart()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+      <span>Дата конца: </span>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateEnd" is-open="popupEnd.opened" datepicker-options="dateOptions" ng-required="false" close-text="Закрыть" current-text="Сегодня" clear-text="Очистить" alt-input-formats="altInputFormats" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default btn-datepicker" ng-click="openEnd()"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </p>
+      <button class="btn btn-default" ng-click="applyFilters()">Применить</button>
+    </div>
+    <div class="col-xs-12 col-md-8">
+      <table class="table table-striped" style="margin-top: 20px;" ng-show="receipts.length">
+          <thead>
+              <th>Магазин</th>
+              <th>Дата покупки</th>
+              <th>Сумма, р</th>
+          </thead>
+          <tr ng-repeat-start="receipt in receipts">
+              <td>
+                  <div ng-click="showItems = showItems ? false : true">{{receipt.user}}</div>
+              </td> 
+              <td>
+                  <div>{{receipt.date_time}}</div>
+              </td>
+              <td>
+                  <div>{{receipt.total_sum/100}}</div>
+              </td>
+          </tr>
+          <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems">
+              <td colspan="3">
+                  <div>Имя: {{item.name}}</div>
+                  <div>Цена, р: {{item.price/100}}</div>
+                  <div>Количество: {{item.quantity}}</div>
+                  <div>Сумма, р: {{item.sum/100}}</div>
+              </td>
+          </tr>
+      </table>
+      <ul ng-show="receipts.length" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+    </div>
 </div>
