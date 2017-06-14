@@ -8,3 +8,20 @@
 .link {
 	cursor: pointer;
 }
+.wrapper {	
+	margin-top: 80px;
+  margin-bottom: 80px;
+}
+.form-auth {
+  max-width: 380px;
+  padding: 15px 35px 15px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+}
+.auth-link {
+	display: block;
+	font-size: 12px;
+	color: #AAA;
+	margin-top: 15px;
+}

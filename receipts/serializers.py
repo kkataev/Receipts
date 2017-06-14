@@ -8,6 +8,7 @@ from django.contrib.auth.models import Permission
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
+from django.db.models import Sum
 
 UserModel = get_user_model()
 
@@ -20,7 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
         user = UserModel.objects.create(
-            username=validated_data['username']
+            username=validated_data['username'],
+            email=validated_data['email']
         )
         user.set_password(validated_data['password'])
         #permission = Permission.objects.get(name='Can add item')
@@ -57,7 +59,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class ReceiptSerializer(serializers.ModelSerializer):   
     items = serializers.SerializerMethodField('get_items_with')
     id = serializers.ReadOnlyField()
-    
+
     class Meta:
         model = Receipt
         fields = ('id', 'user', 'operator', 'total_sum', 'date_time', 'retail_place_address', 'kkt_reg_id', 'cash_total_sum', 'ecash_total_sum', 'items')
@@ -78,14 +80,18 @@ class ProfileSerializer(serializers.ModelSerializer):
     #receipts = ReceiptSerializer(many=True)
     receipts = serializers.SerializerMethodField('get_receipts_with')
     rec_count = serializers.SerializerMethodField()
+    rec_summ = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ('user', 'receipts', 'rec_count')
+        fields = ('user', 'receipts', 'rec_count', 'rec_summ')
 
     def get_rec_count(self, obj):
         return self.rec_count
-    
+
+    def get_rec_summ(self, obj):
+        return self.rec_summ 
+
     def get_receipts_with(self, obj):
     	serializer = None
     	name = None
@@ -110,6 +116,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             receipts = receipts.filter(user__contains=user)
 
         self.rec_count = receipts.count()
+        self.rec_summ = receipts.aggregate(Sum('total_sum'))
 
         if self.context['request'].GET.get('page_num'):
             paginator = Paginator(receipts, 10) # Show 25 contacts per page

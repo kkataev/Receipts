@@ -40,10 +40,10 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         // autofills "username", Angular will be unaware of this and think
         // the $scope.username is blank. To workaround this we use the
         // autofill-event polyfill [4][5]
-        $('#id_auth_form input').checkAndTriggerAutoFillEvent();
+        //$('#id_auth_form input').checkAndTriggerAutoFillEvent();
  
         $scope.getCredentials = function(){
-            return {username: $scope.username, password: $scope.password};
+            return {username: $scope.username, password: $scope.password, email: $scope.email};
         };
  
         $scope.login = function(){
@@ -63,6 +63,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         $scope.logout = function(){
             api.auth.logout(function(){
                 $scope.user = undefined;
+                $location.path('/');
             });
         };
         $scope.register = function($event){
@@ -109,6 +110,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                 if (data && data.data && data.data.results[0] && data.data.results[0].receipts)
                     $scope.totalItems = data.data.results[0].rec_count;
                     $scope.receipts = data.data.results[0].receipts;
+                    $scope.totalSum = data.data.results[0].rec_summ.total_sum__sum;
             }, function () {
                 console.log('error');
             });
@@ -125,6 +127,14 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         $scope.applyFilters = function () {
             if ($scope.dateStart) $scope.dateStart = $filter('date')($scope.dateStart, "yyyy-MM-dd");
             if ($scope.dateEnd) $scope.dateEnd = $filter('date')($scope.dateEnd, "yyyy-MM-dd");
+            $scope.getProfile();
+        }
+
+        $scope.resetFilters = function () {
+            $scope.dateStart = null;
+            $scope.dateEnd = null;
+            $scope.name = null;
+            $scope.storeName = null;
             $scope.getProfile();
         }
 
