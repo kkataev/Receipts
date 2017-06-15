@@ -1,4 +1,4 @@
-from receipts.models import Receipt, Item, Profile
+from receipts.models import Receipt, Item, Profile, Exclude
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model # If used custom user model
 
@@ -54,7 +54,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('quantity', 'sum', 'price', 'name')
+        fields = ('id', 'quantity', 'sum', 'price', 'name', 'exclude')
 
 class ReceiptSerializer(serializers.ModelSerializer):   
     items = serializers.SerializerMethodField('get_items_with')
@@ -134,4 +134,20 @@ class ProfileSerializer(serializers.ModelSerializer):
         serializer = ReceiptSerializer(receipts, context={'name': name}, many=True)
 
         return serializer.data
+
+
+
+class ExcludeSerializer(serializers.ModelSerializer):
+
+    def create(self, validated_data):
+        exclude = Exclude.objects.create(
+            user=self.context['request'].data.get('userId'),
+            item=self.context['request'].data.get('itemId')
+        )
+        exclude.save()
+        return exclude
+
+    class Meta:
+        model = Exclude
+        fields = ('user', 'item')
 

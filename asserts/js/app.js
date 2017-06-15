@@ -51,7 +51,8 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                 $promise.
                     then(function(data){
                         // on good username and password
-                        $scope.user = data.username;
+                        $scope.user = data;
+                        $scope.userData = data;
                         $location.path('/profile');
                     }).
                     catch(function(data){
@@ -99,6 +100,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         $scope.getProfile = function () {
             $scope.receipts = [];
             var search = '';
+            var user = undefined;
             search += "page_num=" + $scope.currentPage;
             if ($scope.dateStart) search += "&date_start=" + $scope.dateStart;
             if ($scope.dateEnd) search += "&date_end=" + $scope.dateEnd;
@@ -111,6 +113,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                     $scope.totalItems = data.data.results[0].rec_count;
                     $scope.receipts = data.data.results[0].receipts;
                     $scope.totalSum = data.data.results[0].rec_summ.total_sum__sum;
+                    $scope.$parent.userData = data.data.results[0].user
             }, function () {
                 console.log('error');
             });
@@ -164,5 +167,13 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             });
         };
 
+        $scope.exclude = function (item) {
+            $http.post("api/items/" + item.id + "/", item).then(function (data) {
+                console.log('success');
+                $scope.getProfile();
+            }, function () {
+                console.log('error');
+            });
+        }
         //$scope.getProfile();
     })

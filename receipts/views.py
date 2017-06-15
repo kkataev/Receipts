@@ -2,12 +2,12 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from receipts.models import Receipt, Item, Profile
+from receipts.models import Receipt, Item, Profile, Exclude
 from django.contrib.auth.models import User
 
 import django_filters.rest_framework
 from rest_framework import viewsets
-from receipts.serializers import ItemSerializer, ReceiptSerializer, ProfileSerializer
+from receipts.serializers import ItemSerializer, ReceiptSerializer, ProfileSerializer, ExcludeSerializer
 
 # Create your views here.
 
@@ -38,6 +38,8 @@ import codecs
 from chardet.universaldetector import UniversalDetector
 
 import sys  
+
+from pprint import pprint
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -131,6 +133,16 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+    def post(self, request, pk, format=None):
+        item = Item.objects.get(id=request.data.get('id'))
+        print getattr(item, 'exclude')
+        if getattr(item, 'exclude') == False:
+            exclude = True
+        else:
+            exclude = False
+        setattr(item, 'exclude', exclude)
+        item.save()
+        return HttpResponse("Successful")
 
 class ReceiptViewSet(viewsets.ModelViewSet):
     """
@@ -138,6 +150,17 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     """
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
+
+
+class ExcludeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    serializer_class = ExcludeSerializer
+
+    def get_queryset(self) :
+        result = Exclude.objects.filter(user=self.request.user.id)
+        return result
 
 class ProfileViewSet(viewsets.ModelViewSet):
     """

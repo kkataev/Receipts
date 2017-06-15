@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from django.conf import settings
 
 # Create your models here.
 
@@ -45,6 +46,13 @@ class Item(models.Model):
     name = models.TextField(max_length=500, blank=False, null = True)
     ndsNo = models.IntegerField(blank=True, null = True)
     receipt = models.ForeignKey(Receipt, related_name='items', blank=True, null = True)
-
+    exclude = models.BooleanField(default=False)
     def __str__(self):
         return '{}'.format(self.name)
+
+class Exclude(models.Model):
+    user = models.BigIntegerField(blank=True, null = True)
+    item = models.BigIntegerField(blank=True, null = True)
+
+    def __str__(self):
+        return '{}'.format(self.user)

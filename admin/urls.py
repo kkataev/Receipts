@@ -10,6 +10,7 @@ router.register(r'items', views.ItemViewSet)
 router.register(r'receipts', views.ReceiptViewSet, "Receipt")
 router.register(r'profiles', views.ProfileViewSet, "Profile")
 router.register(r'users', views.CreateUserView, "User")
+router.register(r'exclude', views.ExcludeViewSet, "Exclude")
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
