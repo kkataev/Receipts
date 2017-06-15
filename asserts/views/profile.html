@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-8">
       <h2>Список покупок</h2>
-      <table class="table table-striped" style="margin-top: 20px;">
+      <table class="table" style="margin-top: 20px;">
           <thead>
               <th>Магазин</th>
               <th>Дата покупки</th>
@@ -53,7 +53,7 @@
                   </div>
               </td>
           </tr>
-          <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems" ng-class="{danger: item.exclude}">
+          <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems" ng-class="{danger: item.exclude, success: !item.exclude}">
               <td colspan="3">
                   <div>Имя: {{item.name}}</div>
                   <div>Цена, р: {{item.price/100}}</div>
