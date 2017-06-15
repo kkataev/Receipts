@@ -8,7 +8,7 @@ from django.contrib.auth.models import Permission
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
-from django.db.models import Sum
+from django.db.models import Sum, Case, When, Value
 
 UserModel = get_user_model()
 
@@ -81,16 +81,20 @@ class ProfileSerializer(serializers.ModelSerializer):
     receipts = serializers.SerializerMethodField('get_receipts_with')
     rec_count = serializers.SerializerMethodField()
     rec_summ = serializers.SerializerMethodField()
+    exclude_summ = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ('user', 'receipts', 'rec_count', 'rec_summ')
+        fields = ('user', 'receipts', 'rec_count', 'rec_summ', 'exclude_summ')
 
     def get_rec_count(self, obj):
         return self.rec_count
 
     def get_rec_summ(self, obj):
         return self.rec_summ 
+
+    def get_exclude_summ(self, obj):
+        return self.exclude_summ 
 
     def get_receipts_with(self, obj):
     	serializer = None
@@ -117,6 +121,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         self.rec_count = receipts.count()
         self.rec_summ = receipts.aggregate(Sum('total_sum'))
+        self.exclude_summ = receipts.filter(items__exclude=True).aggregate(Sum('items__sum'))   
 
         if self.context['request'].GET.get('page_num'):
             paginator = Paginator(receipts, 10) # Show 25 contacts per page

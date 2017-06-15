@@ -113,6 +113,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                     $scope.totalItems = data.data.results[0].rec_count;
                     $scope.receipts = data.data.results[0].receipts;
                     $scope.totalSum = data.data.results[0].rec_summ.total_sum__sum;
+                    $scope.excludeSum = data.data.results[0].exclude_summ.items__sum__sum;
                     $scope.$parent.userData = data.data.results[0].user
             }, function () {
                 console.log('error');

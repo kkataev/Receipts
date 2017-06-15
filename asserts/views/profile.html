@@ -53,9 +53,9 @@
                   </div>
               </td>
           </tr>
-          <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems">
+          <tr ng-if="receipt.items" ng-repeat-end="" ng-repeat="item in receipt.items" ng-show="showItems" ng-class="{danger: item.exclude}">
               <td colspan="3">
-                  <div ng-class="red">Имя: {{item.name}}</div>
+                  <div>Имя: {{item.name}}</div>
                   <div>Цена, р: {{item.price/100}}</div>
                   <div>Количество: {{item.quantity}}</div>
                   <div>Сумма, р: {{item.sum/100}}</div>
@@ -69,6 +69,9 @@
           </tr>
       </table>
       <div><b>Общая сумма по всем страницам:</b> {{totalSum/100}} р.</div>
+      <div><b>Общая сумма возможной экономии:</b> {{excludeSum/100}} р.</div>
+      <div><b>Сумма с исключенными товарами:</b> {{(totalSum - excludeSum)/100}} р.</div>
+
       <ul ng-show="receipts.length" uib-pagination previous-text="Назад" next-text="Вперед" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
     </div>
   </div>
