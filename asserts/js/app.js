@@ -140,9 +140,9 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                                 $scope.itemsExclude[ex] = $scope.excludeArr[i].items_sum / 100;
                             }
                         }
-
+                        $scope.labels.push($scope.recArr[ex].date_time);
                         $scope.recArr[ex] = $scope.recArr[ex].total_sum / 100;
-                        $scope.labels.push(ex);
+                        
                     }
 
                     $scope.data = [

@@ -131,7 +131,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         self.rec_summ = receipts.aggregate(Sum('total_sum'))
         self.exclude_summ = receipts.filter(items__exclude=True).aggregate(Sum('items__sum'))
 
-        self.rec_array = receipts.values('total_sum', 'id')
+        self.rec_array = receipts.values('total_sum', 'id', 'date_time')
         self.exclude_array = receipts.filter(items__exclude=True).annotate(items_sum=Sum('items__sum')).values('items_sum', 'id')
 
         if self.context['request'].GET.get('page_num'):
