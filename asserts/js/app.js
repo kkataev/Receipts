@@ -240,4 +240,6 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         };
 
 
-    })
+    }).controller('indexController', function($scope, api, $location, $http, $filter) {
+    
+   })
