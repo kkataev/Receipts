@@ -129,17 +129,10 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         self.rec_count = receipts.count()
         self.rec_summ = receipts.aggregate(Sum('total_sum'))
-        self.exclude_summ = receipts.filter(items__exclude=True).aggregate(Sum('items__sum'))   
+        self.exclude_summ = receipts.filter(items__exclude=True).aggregate(Sum('items__sum'))
 
-        self.rec_array = receipts.values('items__sum')
-        self.exclude_array = receipts.annotate(
-            items_sum=Case(
-                When(items__exclude=True, then='items__sum'),
-                When(items__exclude=False, then=Value(0)),
-                default=Value(0)
-            ),
-        ).values('items_sum')
-
+        self.rec_array = receipts.values('total_sum', 'id')
+        self.exclude_array = receipts.filter(items__exclude=True).annotate(items_sum=Sum('items__sum')).values('items_sum', 'id')
 
         if self.context['request'].GET.get('page_num'):
             paginator = Paginator(receipts, 10) # Show 25 contacts per page

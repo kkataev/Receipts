@@ -131,16 +131,22 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
 
                     $scope.labels = [];
                     $scope.series = ['Сэкономленное', 'Потраченное'];
-                    for (ex in $scope.excludeArr) {
-                        $scope.excludeArr[ex] = $scope.excludeArr[ex].items_sum / 100;
-                        $scope.labels.push(ex);
-                    }
+
+                    $scope.itemsExclude = []
                     for (ex in $scope.recArr) {
-                        $scope.recArr[ex] = $scope.recArr[ex].items__sum / 100;
+                        $scope.itemsExclude[ex] = 0;
+                        for (i in $scope.excludeArr) {
+                            if ($scope.recArr[ex].id == $scope.excludeArr[i].id) {
+                                $scope.itemsExclude[ex] = $scope.excludeArr[i].items_sum / 100;
+                            }
+                        }
+
+                        $scope.recArr[ex] = $scope.recArr[ex].total_sum / 100;
+                        $scope.labels.push(ex);
                     }
 
                     $scope.data = [
-                        $scope.excludeArr,
+                        $scope.itemsExclude,
                         $scope.recArr
                     ];
 
