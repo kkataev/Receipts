@@ -74,5 +74,11 @@
 
       <ul ng-show="receipts.length" uib-pagination previous-text="Назад" next-text="Вперед" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
     </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClick" chart-options="lineOptions"</canvas> 
+    </div>
   </div>
 </div>

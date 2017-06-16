@@ -1,4 +1,4 @@
-angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loading-bar']).
+angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loading-bar', 'chart.js']).
     config(['$httpProvider', function($httpProvider){
         // django and angular both support csrf tokens. This tells
         // angular which cookie to add to what header.
@@ -12,6 +12,17 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             controller:'profileController'
         }).otherwise({redirectTo: "/"});
     }).
+    config(['ChartJsProvider', function (ChartJsProvider) {
+        // Configure all charts
+        ChartJsProvider.setOptions({
+            chartColors: ['#FF5252', '#FF8A80'],
+            responsive: true
+        });
+        // Configure all line charts
+        ChartJsProvider.setOptions('line', {
+            showLines: true
+        });
+    }]).
     factory('api', function($resource){
         function add_auth_header(data, headersGetter){
             // as per HTTP authentication spec [1], credentials must be
@@ -114,7 +125,25 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                     $scope.receipts = data.data.results[0].receipts;
                     $scope.totalSum = data.data.results[0].rec_summ.total_sum__sum;
                     $scope.excludeSum = data.data.results[0].exclude_summ.items__sum__sum;
-                    $scope.$parent.userData = data.data.results[0].user
+                    $scope.$parent.userData = data.data.results[0].user;
+                    $scope.excludeArr = data.data.results[0].exclude_array;
+                    $scope.recArr = data.data.results[0].rec_array;
+
+                    $scope.labels = [];
+                    $scope.series = ['Сэкономленное', 'Потраченное'];
+                    for (ex in $scope.excludeArr) {
+                        $scope.excludeArr[ex] = $scope.excludeArr[ex].items_sum / 100;
+                        $scope.labels.push(ex);
+                    }
+                    for (ex in $scope.recArr) {
+                        $scope.recArr[ex] = $scope.recArr[ex].items__sum / 100;
+                    }
+
+                    $scope.data = [
+                        $scope.excludeArr,
+                        $scope.recArr
+                    ];
+
             }, function () {
                 console.log('error');
             });
@@ -177,4 +206,32 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             });
         }
         //$scope.getProfile();
+        //$scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+        //$scope.series = ['Series A', 'Series B'];
+
+        $scope.onClick = function (points, evt) {
+            console.log(points, evt);
+        };
+
+        $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+        $scope.options = {
+            scales: {
+                yAxes: [
+                    {
+                      id: 'y-axis-1',
+                      type: 'linear',
+                      display: true,
+                      position: 'left'
+                    },
+                    {
+                      id: 'y-axis-2',
+                      type: 'linear',
+                      display: true,
+                      position: 'right'
+                    }
+                ]
+            }
+        };
+
+
     })

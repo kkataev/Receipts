@@ -82,10 +82,12 @@ class ProfileSerializer(serializers.ModelSerializer):
     rec_count = serializers.SerializerMethodField()
     rec_summ = serializers.SerializerMethodField()
     exclude_summ = serializers.SerializerMethodField()
+    rec_array = serializers.SerializerMethodField()
+    exclude_array = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
-        fields = ('user', 'receipts', 'rec_count', 'rec_summ', 'exclude_summ')
+        fields = ('user', 'receipts', 'rec_count', 'rec_summ', 'exclude_summ', 'rec_array', 'exclude_array')
 
     def get_rec_count(self, obj):
         return self.rec_count
@@ -95,6 +97,12 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_exclude_summ(self, obj):
         return self.exclude_summ 
+
+    def get_rec_array(self, obj):
+        return self.rec_array 
+
+    def get_exclude_array(self, obj):
+        return self.exclude_array 
 
     def get_receipts_with(self, obj):
     	serializer = None
@@ -122,6 +130,16 @@ class ProfileSerializer(serializers.ModelSerializer):
         self.rec_count = receipts.count()
         self.rec_summ = receipts.aggregate(Sum('total_sum'))
         self.exclude_summ = receipts.filter(items__exclude=True).aggregate(Sum('items__sum'))   
+
+        self.rec_array = receipts.values('items__sum')
+        self.exclude_array = receipts.annotate(
+            items_sum=Case(
+                When(items__exclude=True, then='items__sum'),
+                When(items__exclude=False, then=Value(0)),
+                default=Value(0)
+            ),
+        ).values('items_sum')
+
 
         if self.context['request'].GET.get('page_num'):
             paginator = Paginator(receipts, 10) # Show 25 contacts per page
