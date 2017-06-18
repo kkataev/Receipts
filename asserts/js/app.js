@@ -10,6 +10,10 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         {
             templateUrl:'static/views/profile.html',
             controller:'profileController'
+        }).when('/index',
+        {
+            templateUrl:'static/views/index.html',
+            controller:'indexController'
         }).otherwise({redirectTo: "/"});
     }).
     config(['ChartJsProvider', function (ChartJsProvider) {
@@ -241,5 +245,28 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
 
 
     }).controller('indexController', function($scope, api, $location, $http, $filter) {
-    
+        var backgroundResize;
+        backgroundResize = function() {
+          var contH, contW, imgH, imgW, path, ratio, windowH;
+          windowH = $(window).height();
+          path = $('.background');
+          contW = path.width();
+          contH = path.height();
+          imgW = path.attr('data-img-width');
+          imgH = path.attr('data-img-height');
+          ratio = imgW / imgH;
+          imgH = contH;
+          imgW = imgH * ratio;
+          if (contW > imgW) {
+            imgW = contW;
+            imgH = imgW / ratio;
+          }
+          path.data('resized-imgW', imgW);
+          path.data('resized-imgH', imgH);
+          return path.css('background-size', imgW + 'px ' + imgH + 'px');
+        };
+        $(window).resize(backgroundResize);
+        $(window).focus(backgroundResize);
+        return backgroundResize();
+        
    })

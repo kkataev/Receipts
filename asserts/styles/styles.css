@@ -28,3 +28,15 @@
 .chart {
 	margin-top: 20px;
 }
+.fullscreen {
+  width: 100%;
+  min-height: 100%;
+}
+.fullscreen.not-overflow {
+    height: 100%;
+    overflow: hidden;
+}
+.background {
+    background-repeat: no-repeat;
+    background-position: 50% 50%\9!important;
+}

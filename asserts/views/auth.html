@@ -16,10 +16,10 @@
 		  	<div class="wrapper">
 				<form class="form-auth" ng-submit="login()" ng-hide="showReg">
 					<div class="form-group">
-						<input ng-model="username" required name="username" type="text" placeholder="имя" class="form-control">
+						<input ng-model="username" required name="username" type="text" placeholder="Логин" class="form-control">
 					</div>
 					<div class="form-group">
-						<input ng-model="password" required name="password" type="password" placeholder="пароль" class="form-control">
+						<input ng-model="password" required name="password" type="password" placeholder="Пароль" class="form-control">
 					</div>
 					<div class="btn-group">
 						<input type="submit" class="btn btn-default" value="Войти">
@@ -30,13 +30,13 @@
 				</form>
 				<form class="form-auth" ng-submit="register()" ng-show="showReg">
 					<div class="form-group">
-						<input ng-model="username" required name="username" type="text" placeholder="имя" class="form-control">
+						<input ng-model="username" required name="username" type="text" placeholder="Логин" class="form-control">
 					</div>
 					<div class="form-group">
 						<input ng-model="email" required name="email" type="email" placeholder="example@example.com" class="form-control">
 					</div>
 					<div class="form-group">
-						<input ng-model="password" required name="password" type="password" placeholder="пароль" class="form-control">
+						<input ng-model="password" required name="password" type="password" placeholder="Пароль" class="form-control">
 					</div>
 					<div class="btn-group">
 						<input type="submit" class="btn btn-default" value="Зарегистрироваться" ng-click="register($event)">
@@ -48,7 +48,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" ng-view></div>
+	<div ng-view></div>
 </body>
 	<script src="/static/bower_components/jquery/jquery.js">
 	</script> 
