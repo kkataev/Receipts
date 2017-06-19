@@ -14,7 +14,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         {
             templateUrl:'static/views/index.html',
             controller:'indexController'
-        }).otherwise({redirectTo: "/"});
+        }).otherwise({redirectTo: "/index"});
     }).
     config(['ChartJsProvider', function (ChartJsProvider) {
         // Configure all charts
@@ -79,7 +79,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         $scope.logout = function(){
             api.auth.logout(function(){
                 $scope.user = undefined;
-                $location.path('/');
+                $location.path('/index');
             });
         };
         $scope.register = function($event){
