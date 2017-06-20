@@ -4,12 +4,13 @@
 	<link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/static/bower_components/angular-loading-bar/loading-bar.min.css" rel="stylesheet">
 	<link href="/static/styles/styles.css" rel="stylesheet">
-
+	<link rel="icon" type="image/png" href="/static/images/logo2.png" />
 </head>
 <body ng-controller="authController" ng-init="user='{{user.username}}'">
 	<div class="container navbar navbar-fixed-top">
 		{% verbatim %}
 		<div ng-show="user" class="navbar-form navbar-right">
+			<a href="#/profile"><img class="logo-img" src="/static/images/logo2.png" width="35px" height="35px" alt="Economite.ru"><!--span class="logo-text">Economite.ru</span--></a>
 			<input type="submit" class="btn btn-default" ng-click="logout()" value="Выйти {{userData.username}}"/>
 		</div>
 		<div ng-hide="user">

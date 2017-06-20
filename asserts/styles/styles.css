@@ -41,3 +41,19 @@
     background-repeat: no-repeat;
     background-position: 50% 50%\9!important;
 }
+.navbar-form {
+  position: relative;
+}
+.logo-text {
+  font-size: 20px;
+  color: #000;
+  display: block;
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.logo-img {
+  float: left;
+  display: block;
+  position: relative;
+}
