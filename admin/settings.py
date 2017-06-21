@@ -160,15 +160,15 @@ class Staging(Common):
     SECURE_HSTS_SECONDS = values.IntegerValue(31536000)
     SECURE_REDIRECT_EXEMPT = values.ListValue([])
     SECURE_SSL_HOST = values.Value(None)
-    SECURE_SSL_REDIRECT = values.BooleanValue(True)
-    SECURE_PROXY_SSL_HEADER = values.TupleValue(
-        ('HTTP_X_FORWARDED_PROTO', 'https')
-    )
+    #SECURE_SSL_REDIRECT = values.BooleanValue(False)
+    #SECURE_PROXY_SSL_HEADER = values.TupleValue(
+    #    ('HTTP_X_FORWARDED_PROTO', 'https')
+    #)
 
 
 class Production(Staging):
 
-    DEBUG = False
+    DEBUG = True
     """
     The in-production settings.
     """
