@@ -1,12 +1,13 @@
-<div class="container" style="margin-top: 50px;">
+<div class="container" style="margin-top: 70px;">
   <div class="row">
     <div class="col-md-12" ng-show="user">
-      <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+      <input type="file" class="upload" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" style="float:left;"/>
+      <button type="button" class="btn btn-info" ng-click="showHint()" style="float:right;">Подсказка</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4">
-      <h2>Фильтры</h2>
+      <h2 class="filter-list">Фильтры</h2>
       <span>Имя товара: </span>
       <p><input class="form-control" type="text" ng-model="name"></p>
       <span>Название магазина: </span>
@@ -29,7 +30,7 @@
       <button class="btn btn-danger" ng-click="resetFilters()">Сбросить</button>
     </div>
     <div class="col-md-8">
-      <h2>Список покупок</h2>
+      <h2 class="receipts-list">Список покупок</h2>
       <table class="table" style="margin-top: 20px;">
           <thead>
               <th>Магазин</th>
@@ -68,9 +69,9 @@
             <td colspan="4">Нет данных</td>
           </tr>
       </table>
-      <div><b>Общая сумма по всем страницам:</b> {{totalSum/100}} р.</div>
-      <div><b>Общая сумма возможной экономии:</b> {{excludeSum/100}} р.</div>
-      <div><b>Сумма с исключенными товарами:</b> {{(totalSum - excludeSum)/100}} р.</div>
+      <div><b>Ваши затраты:</b> {{totalSum/100}} р.</div>
+      <div><b>За текущий период времени вы могли бы сэкономить:</b> {{excludeSum/100}} р.</div>
+      <div class="sum-list"><b>И потратили бы:</b> {{(totalSum - excludeSum)/100}} р.</div>
 
       <ul ng-show="receipts.length" uib-pagination previous-text="Назад" next-text="Вперед" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
     </div>
@@ -78,7 +79,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h2>Визуализация</h2>
+      <h2 class="visual">Визуализация</h2>
       <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClick" chart-options="lineOptions"</canvas> 
     </div>
   </div>

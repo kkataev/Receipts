@@ -32,6 +32,10 @@
 .fullscreen {
   width: 100%;
   min-height: 100%;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  z-index: -1;
 }
 .fullscreen.not-overflow {
     height: 100%;
@@ -40,4 +44,25 @@
 .background {
     background-repeat: no-repeat;
     background-position: 50% 50%\9!important;
+}
+.navbar-form {
+  position: relative;
+  padding: 0px;
+}
+.navbar-fixed-top {
+  border-bottom: 1px solid #DDD;
+}
+.logo-text {
+  font-size: 20px;
+  color: #000;
+  display: block;
+  float: left;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.logo-img {
+  float: left;
+  display: block;
+  position: relative;
+  margin-top: 8px;
 }

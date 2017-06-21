@@ -243,6 +243,65 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             }
         };
 
+        tour = new Shepherd.Tour({
+          defaults: {
+            classes: 'shepherd-theme-default'
+          }
+        });
+
+        tour.addStep('upload', {
+          title: 'Пример использования',
+          text: 'Нажмите на кнопку для загрузки чеков в приложение. Этот файл вам надо получить через приложение "Проверка чеков", которое можно скачать из AppStore или GooglePlay.',
+          attachTo: '.upload bottom',
+          buttons: [{
+            text: 'Далее',
+            action: tour.next
+          }]
+        });
+
+        tour.addStep('list', {
+          title: 'Пример использования',
+          text: 'Здесь вы можете найти список ваших загруженных чеков. Обратите внимание, что их можно раскрыть для просмотра информации о товарах и удалить.',
+          attachTo: '.receipts-list left',
+          buttons: [{
+            text: 'Далее',
+            action: tour.next
+          }]
+        });
+
+        tour.addStep('filter-list', {
+          title: 'Пример использования',
+          text: 'С помощью фильтров вы можете найти те чеки, которые хотели бы отобразить.',
+          attachTo: '.filter-list right',
+          buttons: [{
+            text: 'Далее',
+            action: tour.next
+          }]
+        });
+
+        tour.addStep('sum-list', {
+          title: 'Пример использования',
+          text: 'Здесь отобразятся суммарные данные о ваших покупках. Обратите внимание, что эти данные относятся ко всем отфильтрованным страницам',
+          attachTo: '.sum-list left',
+          buttons: [{
+            text: 'Далее',
+            action: tour.next
+          }]
+        });
+
+        tour.addStep('visual', {
+          title: 'Пример использования',
+          text: 'Визуальная оценка ваших затрат. Обратите внимание, что эти данные относятся ко всем отфильтрованным страницам',
+          attachTo: '.visual top',
+          buttons: [{
+            text: 'Далее',
+            action: tour.next
+          }]
+        });
+
+        $scope.showHint = function () {
+            tour.start();
+        }        
 
     }).controller('indexController', function($scope, api, $location, $http, $filter) {
         var backgroundResize;
