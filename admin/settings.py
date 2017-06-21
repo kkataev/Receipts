@@ -168,7 +168,7 @@ class Staging(Common):
 
 class Production(Staging):
 
-    DEBUG = True
+    DEBUG = False
     """
     The in-production settings.
     """
