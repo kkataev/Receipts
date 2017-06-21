@@ -69,9 +69,9 @@
             <td colspan="4">Нет данных</td>
           </tr>
       </table>
-      <div><b>Общая сумма по всем страницам:</b> {{totalSum/100}} р.</div>
-      <div><b>Общая сумма возможной экономии:</b> {{excludeSum/100}} р.</div>
-      <div class="sum-list"><b>Сумма с исключенными товарами:</b> {{(totalSum - excludeSum)/100}} р.</div>
+      <div><b>Ваши затраты:</b> {{totalSum/100}} р.</div>
+      <div><b>За текущий период времени вы могли бы сэкономить:</b> {{excludeSum/100}} р.</div>
+      <div class="sum-list"><b>И потратили бы:</b> {{(totalSum - excludeSum)/100}} р.</div>
 
       <ul ng-show="receipts.length" uib-pagination previous-text="Назад" next-text="Вперед" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
     </div>

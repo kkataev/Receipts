@@ -282,7 +282,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         tour.addStep('sum-list', {
           title: 'Пример использования',
           text: 'Здесь отобразятся суммарные данные о ваших покупках. Обратите внимание, что эти данные относятся ко всем отфильтрованным страницам',
-          attachTo: '.sum-list bottom',
+          attachTo: '.sum-list left',
           buttons: [{
             text: 'Далее',
             action: tour.next
