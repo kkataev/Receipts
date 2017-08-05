@@ -50,13 +50,26 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             })
         };
     }).
-    controller('authController', function($scope, api, $location) {
+    controller('authController', function($scope, $rootScope, api, $location) {
         // Angular does not detect auto-fill or auto-complete. If the browser
         // autofills "username", Angular will be unaware of this and think
         // the $scope.username is blank. To workaround this we use the
         // autofill-event polyfill [4][5]
         //$('#id_auth_form input').checkAndTriggerAutoFillEvent();
  
+        // register listener to watch route changes
+        $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+            if ($scope.user == "" || angular.isUndefined($scope.user)) {
+                // no logged user, we should be going to #login
+                if (next.templateUrl == "static/views/index.html") {
+                  // already going to #login, no redirect needed
+                } else {
+                  // not going to #login, we should redirect now
+                  $location.path("/index");
+                }
+            }         
+        });
+
         $scope.getCredentials = function(){
             return {username: $scope.username, password: $scope.password, email: $scope.email};
         };
@@ -82,6 +95,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                 $location.path('/index');
             });
         };
+
         $scope.register = function($event){
             // prevent login form from firing
             $event.preventDefault();
@@ -89,6 +103,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             api.users.create($scope.getCredentials()).
                 $promise.then($scope.login)
             };
+
     }).controller('profileController', function($scope, api, $location, $http, $filter) {
         $scope.receipts = [];
         $scope.currentPage = 1;

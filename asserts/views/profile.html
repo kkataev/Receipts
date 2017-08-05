@@ -12,14 +12,14 @@
       <p><input class="form-control" type="text" ng-model="name"></p>
       <span>Название магазина: </span>
       <p><input class="form-control" type="text" ng-model="storeName"></p>
-      <span>Дата начала: </span>
+      <span>Начало периода: </span>
       <p class="input-group">
         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateStart" is-open="popupStart.opened" datepicker-options="dateOptions" ng-required="false" close-text="Закрыть" current-text="Сегодня" clear-text="Очистить" alt-input-formats="altInputFormats" />
         <span class="input-group-btn">
           <button type="button" class="btn btn-default btn-datepicker" ng-click="openStart()"><i class="glyphicon glyphicon-calendar"></i></button>
         </span>
       </p>
-      <span>Дата конца: </span>
+      <span>Конец периода: </span>
       <p class="input-group">
         <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dateEnd" is-open="popupEnd.opened" datepicker-options="dateOptions" ng-required="false" close-text="Закрыть" current-text="Сегодня" clear-text="Очистить" alt-input-formats="altInputFormats" />
         <span class="input-group-btn">
