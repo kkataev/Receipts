@@ -38,9 +38,9 @@
               <th>Сумма, р</th>
               <th>Управление</th>
           </thead>
-          <tr ng-repeat-start="receipt in receipts">
+          <tr ng-repeat-start="receipt in receipts" class="link" ng-click="showItems = showItems ? false : true">
               <td>
-                  <div class="link" ng-click="showItems = showItems ? false : true">{{receipt.user}}</div>
+                  <div>{{receipt.user}}</div>
               </td> 
               <td>
                   <div>{{receipt.date_time}}</div>
