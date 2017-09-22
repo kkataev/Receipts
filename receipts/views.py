@@ -103,19 +103,18 @@ def upload(request):
 class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
-@csrf_exempt
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
- 
+    @csrf_exempt
     def post(self, request, *args, **kwargs):
         login(request, request.user)
         return Response(UserSerializer(request.user).data)
  
+    @csrf_exempt
     def delete(self, request, *args, **kwargs):
         logout(request)
         return Response({})
 
-@csrf_exempt
 class CreateUserView(viewsets.ModelViewSet):
 
     model = get_user_model()
@@ -125,7 +124,6 @@ class CreateUserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     #queryset = User.objects.all()
 
-
 class ItemViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -133,6 +131,7 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
+    @csrf_exempt
     def post(self, request, pk, format=None):
         item = Item.objects.get(id=request.data.get('id'))
         print getattr(item, 'exclude')
@@ -144,7 +143,6 @@ class ItemViewSet(viewsets.ModelViewSet):
         item.save()
         return HttpResponse("Successful")
 
-@csrf_exempt
 class ReceiptViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -152,18 +150,17 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
 
-@csrf_exempt
 class ExcludeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
     """
     serializer_class = ExcludeSerializer
 
+    @csrf_exempt
     def get_queryset(self) :
         result = Exclude.objects.filter(user=self.request.user.id)
         return result
 
-@csrf_exempt
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -171,6 +168,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
     serializer_class = ProfileSerializer
 
+    @csrf_exempt
     def get_queryset(self) :
         result = Profile.objects.filter(user__username=self.request.user)
         return result
