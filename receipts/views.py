@@ -34,6 +34,8 @@ from django.views.generic.base import TemplateView
 from django.core.files.storage import FileSystemStorage
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+
 import codecs
 from chardet.universaldetector import UniversalDetector
 
