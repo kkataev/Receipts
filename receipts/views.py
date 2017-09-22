@@ -103,7 +103,7 @@ def upload(request):
 class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
-
+@csrf_exempt
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
  
@@ -115,7 +115,7 @@ class AuthView(APIView):
         logout(request)
         return Response({})
 
-
+@csrf_exempt
 class CreateUserView(viewsets.ModelViewSet):
 
     model = get_user_model()
@@ -144,6 +144,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         item.save()
         return HttpResponse("Successful")
 
+@csrf_exempt
 class ReceiptViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -151,7 +152,7 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
 
-
+@csrf_exempt
 class ExcludeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -162,6 +163,7 @@ class ExcludeViewSet(viewsets.ModelViewSet):
         result = Exclude.objects.filter(user=self.request.user.id)
         return result
 
+@csrf_exempt
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -173,6 +175,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
         result = Profile.objects.filter(user__username=self.request.user)
         return result
 
+@csrf_exempt
 def index(request):
 
     receipts = Receipt.objects.filter(profile__user=request.user).values()
