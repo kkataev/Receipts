@@ -41,12 +41,17 @@ import sys
 
 from pprint import pprint
 
+from django.middleware.csrf import _get_new_csrf_token as get_new_csrf_token
+
+
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
 
 def getcsrf(request):
-    return HttpResponse("Successful")
+    response = Response({})
+    response.set_cookie("csrftoken", get_new_csrf_token())
+    return response
 
 @csrf_exempt 
 def upload(request):
