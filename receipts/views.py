@@ -116,6 +116,9 @@ class AuthView(APIView):
         logout(request)
         return Response({})
 
+    def perform_authentication(self, request):
+        pass
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CreateUserView(viewsets.ModelViewSet):
 
