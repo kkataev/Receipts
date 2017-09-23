@@ -4,8 +4,6 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from rest_framework import routers
 from receipts import views
-from django.views.decorators.csrf import csrf_exempt
-
 
 router = routers.DefaultRouter()
 router.register(r'items', views.ItemViewSet)
