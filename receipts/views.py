@@ -49,7 +49,7 @@ sys.setdefaultencoding('utf8')
 
 
 def getcsrf(request):
-    response = Response({})
+    response = HttpResponse("Successful")
     response.set_cookie("csrftoken", get_new_csrf_token())
     return response
 
