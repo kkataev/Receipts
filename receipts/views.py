@@ -45,6 +45,9 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
+def getcsrf(request):
+    return HttpResponse("Successful")
+
 @csrf_exempt 
 def upload(request):
     if request.method == 'POST' and request.FILES.get('file',False) and request.user.is_authenticated():
