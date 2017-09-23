@@ -105,19 +105,17 @@ def upload(request):
 class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
-@method_decorator(csrf_exempt, name='dispatch')
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
+    @method_decorator(csrf_exempt, name='dispatch')
     def post(self, request, *args, **kwargs):
         login(request, request.user)
         return Response(UserSerializer(request.user).data)
- 
+        
+    @method_decorator(csrf_exempt, name='dispatch')
     def delete(self, request, *args, **kwargs):
         logout(request)
         return Response({})
-
-    def perform_authentication(self, request):
-        pass
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CreateUserView(viewsets.ModelViewSet):
