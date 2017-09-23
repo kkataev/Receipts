@@ -49,9 +49,7 @@ sys.setdefaultencoding('utf8')
 
 
 def getcsrf(request):
-    response = HttpResponse("Successful")
-    response.set_cookie("csrftoken", get_new_csrf_token())
-    return response
+    return JsonResponse({"csrftoken": get_new_csrf_token()})
 
 @csrf_exempt 
 def upload(request):
