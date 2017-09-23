@@ -34,8 +34,6 @@ from django.views.generic.base import TemplateView
 from django.core.files.storage import FileSystemStorage
 import json
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-
 import codecs
 from chardet.universaldetector import UniversalDetector
 
@@ -105,19 +103,19 @@ def upload(request):
 class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
+
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
-    @method_decorator(csrf_exempt, name='dispatch')
+ 
     def post(self, request, *args, **kwargs):
         login(request, request.user)
         return Response(UserSerializer(request.user).data)
-        
-    @method_decorator(csrf_exempt, name='dispatch')
+ 
     def delete(self, request, *args, **kwargs):
         logout(request)
         return Response({})
 
-@method_decorator(csrf_exempt, name='dispatch')
+
 class CreateUserView(viewsets.ModelViewSet):
 
     model = get_user_model()
@@ -127,7 +125,7 @@ class CreateUserView(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     #queryset = User.objects.all()
 
-@method_decorator(csrf_exempt, name='dispatch')
+
 class ItemViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -146,7 +144,6 @@ class ItemViewSet(viewsets.ModelViewSet):
         item.save()
         return HttpResponse("Successful")
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ReceiptViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -154,7 +151,7 @@ class ReceiptViewSet(viewsets.ModelViewSet):
     queryset = Receipt.objects.all()
     serializer_class = ReceiptSerializer
 
-@method_decorator(csrf_exempt, name='dispatch')
+
 class ExcludeViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -165,7 +162,6 @@ class ExcludeViewSet(viewsets.ModelViewSet):
         result = Exclude.objects.filter(user=self.request.user.id)
         return result
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ProfileViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -177,7 +173,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
         result = Profile.objects.filter(user__username=self.request.user)
         return result
 
-@csrf_exempt
 def index(request):
 
     receipts = Receipt.objects.filter(profile__user=request.user).values()
