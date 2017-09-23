@@ -37,6 +37,9 @@ from django.views.decorators.csrf import csrf_exempt
 import codecs
 from chardet.universaldetector import UniversalDetector
 
+from django.utils.decorators import method_decorator
+
+
 import sys  
 
 from pprint import pprint
@@ -106,15 +109,17 @@ class OnePageAppView(TemplateView):
 
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
- 
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(AuthView, self).dispatch(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         login(request, request.user)
         return Response(UserSerializer(request.user).data)
- 
+
     def delete(self, request, *args, **kwargs):
         logout(request)
         return Response({})
-
 
 class CreateUserView(viewsets.ModelViewSet):
 

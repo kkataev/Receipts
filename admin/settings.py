@@ -42,7 +42,7 @@ class Common(Configuration):
     ]
 
     MIDDLEWARE = [
-        'django.middleware.security.SecurityMiddleware',
+        #'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         #'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,6 +52,8 @@ class Common(Configuration):
         'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     ]
+
+    CSRF_COOKIE_SECURE = False
 
     ROOT_URLCONF = 'admin.urls'
 

@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^$', views.OnePageAppView.as_view(), name='home'),
-    url(r'^api/auth/$', csrf_exempt(views.AuthView.as_view()), name='authenticate'),
+    url(r'^api/auth/$', views.AuthView.as_view(), name='authenticate'),
     url(r'^api/upload/', views.upload, name="upload"),
 
 ]
