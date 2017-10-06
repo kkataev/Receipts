@@ -37,6 +37,7 @@ class Common(Configuration):
         'debug_toolbar',
         'receipts',
         'rest_framework',
+        'rest_framework.authtoken',
         'django_filters',
 
     ]
@@ -126,7 +127,13 @@ class Common(Configuration):
         ],
         'PAGE_SIZE': 10,
         'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
-        'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',)
+        'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.BasicAuthentication',
+
+            # I add this config
+            'rest_framework.authentication.TokenAuthentication',
+     )
     }
 
     LOGIN_REDIRECT_URL = '/profiles'

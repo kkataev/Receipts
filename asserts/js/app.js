@@ -50,7 +50,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
             })
         };
     }).
-    controller('authController', function($scope, $rootScope, api, $location) {
+    controller('authController', function($scope, $rootScope, api, $location, $http) {
         // Angular does not detect auto-fill or auto-complete. If the browser
         // autofills "username", Angular will be unaware of this and think
         // the $scope.username is blank. To workaround this we use the
@@ -79,6 +79,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
                 $promise.
                     then(function(data){
                         // on good username and password
+                        $http.defaults.headers.common.Authorization = 'Token ' + data.token;
                         $scope.user = data;
                         $scope.userData = data;
                         $location.path('/profile');
@@ -91,6 +92,7 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
  
         $scope.logout = function(){
             api.auth.logout(function(){
+                $http.defaults.headers.common.Authorization = null;
                 $scope.user = undefined;
                 $location.path('/index');
             });
@@ -117,10 +119,6 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
         $scope.formats = 'dd-MMMM-yyyy';
         $scope.popupStart = {opened: false}
         $scope.popupEnd = {opened: false}
-
-        $scope.$watch('user', function(newValue, oldValue) {
-            $scope.getProfile();
-        });
 
         $scope.pageChanged = function() {
             $scope.page = 1;
@@ -331,7 +329,11 @@ angular.module('authApp', ['ngResource', 'ngRoute', 'ui.bootstrap', 'angular-loa
 
         $scope.showHint = function () {
             tour.start();
-        }        
+        }
+
+        //$scope.$watch('user', function(newValue, oldValue) {
+        $scope.getProfile();
+        //});        
 
     }).controller('indexController', function($scope, api, $location, $http, $filter) {
         var backgroundResize;

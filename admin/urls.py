@@ -22,7 +22,6 @@ urlpatterns = [
     url(r'^$', views.OnePageAppView.as_view(), name='home'),
     url(r'^api/auth/$', views.AuthView.as_view(), name='authenticate'),
     url(r'^api/upload/', views.upload, name="upload"),
-    url(r'^api/getcsrf/', views.getcsrf, name="getcsrf"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

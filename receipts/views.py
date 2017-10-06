@@ -41,15 +41,18 @@ import sys
 
 from pprint import pprint
 
-from django.middleware.csrf import _get_new_csrf_token as get_new_csrf_token
+
+#For token auth
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken import views
+
 
 
 reload(sys)  
 sys.setdefaultencoding('utf8')
-
-
-def getcsrf(request):
-    return JsonResponse({"csrftoken": get_new_csrf_token()})
 
 @csrf_exempt 
 def upload(request):
@@ -110,12 +113,19 @@ class OnePageAppView(TemplateView):
     template_name = 'static/views/auth.html'
 
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+
 class AuthView(APIView):
     #authentication_classes = (authentication.QuietBasicAuthentication,)
  
     def post(self, request, *args, **kwargs):
         login(request, request.user)
-        return Response(UserSerializer(request.user).data)
+        response = UserSerializer(request.user).data
+        response['token'] = Token.objects.get(user=request.user).key
+        return Response(response)
  
     def delete(self, request, *args, **kwargs):
         logout(request)
